@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Produtos - TechNova Store</title>
   </head>
-
   <body>
     <header id="header"></header>
 
@@ -13,361 +12,270 @@
       <h1>Produtos</h1>
 
       <section>
-        <h2>Buscar produtos</h2>
+        <h2>Pesquisar produtos</h2>
 
-        <form action="busca.html" method="get" role="search">
-          <label for="busca-produtos">O que você está procurando?</label>
-          <input type="search" id="busca-produtos" name="q" placeholder="O que você está procurando?" />
-          <button type="submit">Buscar</button>
-        </form>
+        <input
+          type="text"
+          id="pesquisa"
+          placeholder="Digite o nome do produto..."
+        />
+
+        <select id="filtro-categoria">
+          <option value="">Todas as categorias</option>
+          <option value="Smartphones">Smartphones</option>
+          <option value="Áudio">Áudio</option>
+          <option value="Periféricos">Periféricos</option>
+        </select>
+
+        <select id="ordenacao">
+          <option value="">Ordenar por</option>
+          <option value="menor">Menor preço</option>
+          <option value="maior">Maior preço</option>
+          <option value="nome">Nome</option>
+        </select>
       </section>
 
       <hr />
 
-      <section>
-        <h2>Filtros</h2>
-
-        <form action="produtos.html" method="get">
-          <label for="preco">Faixa de Preço:</label>
-
-        <select id="preco" name="preco">
-          <option value="">Todos</option>
-          <option value="500">Até R$ 500</option>
-          <option value="1000">R$ 500 a R$ 1.000</option>
-          <option value="2000">R$ 1.000 a R$ 2.000</option>
-          <option value="3000">Acima de R$ 2.000</option>
-        </select>
-
-        <br /><br />
-
-          <label for="marca">Marca:</label>
-
-        <select id="marca" name="marca">
-          <option value="">Todas</option>
-          <option value="samsung">Samsung</option>
-          <option value="apple">Apple</option>
-          <option value="xiaomi">Xiaomi</option>
-          <option value="logitech">Logitech</option>
-        </select>
-
-        <br /><br />
-
-          <label for="categoria">Categoria:</label>
-
-        <select id="categoria" name="categoria">
-          <option value="">Todas</option>
-          <option value="smartphones">Smartphones</option>
-          <option value="smart-home">Smart Home</option>
-          <option value="perifericos">Periféricos</option>
-          <option value="informatica">Informática</option>
-          <option value="acessorios">Acessórios</option>
-        </select>
-
-        <br /><br />
-
-          <button type="submit">Aplicar Filtros</button>
-        </form>
-      </section>
-
-      <hr />
-
-      <section>
-        <h2>Ordenar Produtos</h2>
-
-        <form action="produtos.html" method="get">
-          <label for="ordenacao">Ordenar por:</label>
-          <select id="ordenacao" name="ordenacao">
-          <option value="">Selecionar</option>
-          <option value="menor-preco">Menor Preço</option>
-          <option value="mais-vendidos">Mais Vendidos</option>
-        </select>
-          <button type="submit">Ordenar</button>
-        </form>
-      </section>
-
-      <hr />
-
-      <section>
-        <h2>Produtos</h2>
-
-        <article>
+      <section id="lista-produtos">
+        <article class="produto" data-categoria="Smartphones">
           <img
             src="https://via.placeholder.com/400x400/EBF3FA/0066CC?text=Smartphone+TechPhone+X"
             alt="Smartphone TechPhone X"
-            width="300"
+            width="200"
           />
 
-          <h3>Smartphone TechPhone X</h3>
-
+          <h2>Smartphone TechPhone X</h2>
+          <p>SKU: TN-SM-001</p>
+          <p>★★★★★</p>
           <p>R$ 2.499,90</p>
 
-          <p>Avaliação: ★★★★★</p>
+          <button class="adicionar-carrinho" data-id="TN-SM-001">
+            Adicionar ao Carrinho
+          </button>
 
-          <button popovertarget="produto1">Ver detalhes</button>
-
-          <a href="carrinho.html">Adicionar ao Carrinho</a>
+          <button class="mostrar-detalhes" data-id="TN-SM-001">
+            Ver detalhes
+          </button>
         </article>
 
-        <br />
+        <hr />
 
-        <article>
+        <article class="produto" data-categoria="Áudio">
           <img
             src="https://via.placeholder.com/400x400/EBF3FA/0066CC?text=Fone+TechSound"
             alt="Fone Bluetooth TechSound"
-            width="300"
+            width="200"
           />
 
-          <h3>Fone Bluetooth TechSound</h3>
-
+          <h2>Fone Bluetooth TechSound</h2>
+          <p>SKU: TN-FN-002</p>
+          <p>★★★★☆</p>
           <p>R$ 299,90</p>
 
-          <p>Avaliação: ★★★★☆</p>
+          <button class="adicionar-carrinho" data-id="TN-FN-002">
+            Adicionar ao Carrinho
+          </button>
 
-          <button popovertarget="produto2">Ver detalhes</button>
-
-          <a href="carrinho.html">Adicionar ao Carrinho</a>
+          <button class="mostrar-detalhes" data-id="TN-FN-002">
+            Ver detalhes
+          </button>
         </article>
 
-        <br />
+        <hr />
 
-        <article>
+        <article class="produto" data-categoria="Periféricos">
           <img
             src="https://via.placeholder.com/400x400/EBF3FA/0066CC?text=Teclado+TechKeys"
             alt="Teclado Mecânico TechKeys"
-            width="300"
+            width="200"
           />
 
-          <h3>Teclado Mecânico TechKeys</h3>
-
+          <h2>Teclado Mecânico TechKeys</h2>
+          <p>SKU: TN-TC-003</p>
+          <p>★★★★★</p>
           <p>R$ 449,90</p>
 
-          <p>Avaliação: ★★★★★</p>
+          <button class="adicionar-carrinho" data-id="TN-TC-003">
+            Adicionar ao Carrinho
+          </button>
 
-          <button popovertarget="produto3">Ver detalhes</button>
-
-          <a href="carrinho.html">Adicionar ao Carrinho</a>
+          <button class="mostrar-detalhes" data-id="TN-TC-003">
+            Ver detalhes
+          </button>
         </article>
+      </section>
+
+      <p id="mensagem-produto"></p>
+
+      <section id="detalhes-produto" hidden>
+        <h2 id="detalhe-nome"></h2>
+        <p id="detalhe-descricao"></p>
+        <p id="detalhe-preco"></p>
+        <p id="detalhe-garantia">
+          Garantia: 12 meses (90 dias legais + 9 meses do fabricante).
+        </p>
+
+        <button id="fechar-detalhes">Fechar detalhes</button>
       </section>
 
       <hr />
 
-      <section>
-        <h2>Paginação</h2>
-
-        <a href="#">1</a>
-        <a href="#">2</a>
-        <a href="#">3</a>
-        <a href="#">Próxima</a>
-      </section>
+      <a href="carrinho.html">Ir para o Carrinho</a>
     </main>
-
-    <!-- MODAL 3.4 - PRODUTO 1 -->
-
-    <div id="produto1" popover>
-      <h2>Smartphone TechPhone X</h2>
-
-      <img
-        src="https://via.placeholder.com/400x400/EBF3FA/0066CC?text=Smartphone+TechPhone+X"
-        alt="Smartphone TechPhone X"
-        width="400"
-      />
-
-      <p><strong>SKU:</strong> TN-SM-001</p>
-
-      <p><strong>Preço à vista:</strong> R$ 2.499,90</p>
-
-      <p><strong>Preço parcelado:</strong> 10x de R$ 249,99</p>
-
-      <p><strong>Avaliação:</strong> ★★★★★</p>
-
-      <h3>Descrição</h3>
-
-      <p>
-        Smartphone moderno para uso diário, com bom desempenho, armazenamento e
-        recursos tecnológicos.
-      </p>
-
-      <h3>Especificações</h3>
-
-      <ul>
-        <li>Tela de 6,5 polegadas</li>
-        <li>8 GB de RAM</li>
-        <li>256 GB de armazenamento</li>
-        <li>Câmera de 50 MP</li>
-        <li>Bateria de 5000 mAh</li>
-      </ul>
-
-      <details>
-        <summary>Garantia e Suporte</summary>
-
-        <p>
-          O produto possui 90 dias de Garantia Legal, conforme o Código de
-          Defesa do Consumidor, mais 9 meses de Garantia do Fabricante,
-          totalizando 12 meses de garantia.
-        </p>
-      </details>
-
-      <h3>Calcular Frete</h3>
-
-      <form id="form-frete-1">
-        <label for="cep1">CEP:</label>
-
-        <input type="text" id="cep1" placeholder="00000-000" />
-
-        <button type="submit">Calcular</button>
-      </form>
-
-      <p id="resultado-frete-1"></p>
-
-      <label for="quantidade1">Quantidade:</label>
-
-      <input type="number" id="quantidade1" value="1" min="1" />
-
-      <br /><br />
-
-      <a href="carrinho.html">Adicionar ao Carrinho</a>
-
-      <button popovertarget="produto1">Fechar</button>
-    </div>
-
-    <!-- MODAL 3.4 - PRODUTO 2 -->
-
-    <div id="produto2" popover>
-      <h2>Fone Bluetooth TechSound</h2>
-
-      <img
-        src="https://via.placeholder.com/400x400/EBF3FA/0066CC?text=Fone+TechSound"
-        alt="Fone Bluetooth TechSound"
-        width="400"
-      />
-
-      <p><strong>SKU:</strong> TN-FN-002</p>
-
-      <p><strong>Preço à vista:</strong> R$ 299,90</p>
-
-      <p><strong>Preço parcelado:</strong> 5x de R$ 59,98</p>
-
-      <p><strong>Avaliação:</strong> ★★★★☆</p>
-
-      <h3>Descrição</h3>
-
-      <p>
-        Fone de ouvido Bluetooth com conexão sem fio, microfone integrado e
-        bateria de longa duração.
-      </p>
-
-      <h3>Especificações</h3>
-
-      <ul>
-        <li>Conexão Bluetooth</li>
-        <li>Microfone integrado</li>
-        <li>Bateria de longa duração</li>
-        <li>Conexão sem fio</li>
-      </ul>
-
-      <details>
-        <summary>Garantia e Suporte</summary>
-
-        <p>
-          O produto possui 90 dias de Garantia Legal, conforme o Código de
-          Defesa do Consumidor, mais 9 meses de Garantia do Fabricante,
-          totalizando 12 meses de garantia.
-        </p>
-      </details>
-
-      <h3>Calcular Frete</h3>
-
-      <form id="form-frete-2">
-        <label for="cep2">CEP:</label>
-
-        <input type="text" id="cep2" placeholder="00000-000" />
-
-        <button type="submit">Calcular</button>
-      </form>
-
-      <p id="resultado-frete-2"></p>
-
-      <label for="quantidade2">Quantidade:</label>
-
-      <input type="number" id="quantidade2" value="1" min="1" />
-
-      <br /><br />
-
-      <a href="carrinho.html">Adicionar ao Carrinho</a>
-
-      <button popovertarget="produto2">Fechar</button>
-    </div>
-
-    <!-- MODAL 3.4 - PRODUTO 3 -->
-
-    <div id="produto3" popover>
-      <h2>Teclado Mecânico TechKeys</h2>
-
-      <img
-        src="https://via.placeholder.com/400x400/EBF3FA/0066CC?text=Teclado+TechKeys"
-        alt="Teclado Mecânico TechKeys"
-        width="400"
-      />
-
-      <p><strong>SKU:</strong> TN-TC-003</p>
-
-      <p><strong>Preço à vista:</strong> R$ 449,90</p>
-
-      <p><strong>Preço parcelado:</strong> 6x de R$ 74,98</p>
-
-      <p><strong>Avaliação:</strong> ★★★★★</p>
-
-      <h3>Descrição</h3>
-
-      <p>
-        Teclado mecânico desenvolvido para usuários que procuram praticidade e
-        desempenho.
-      </p>
-
-      <h3>Especificações</h3>
-
-      <ul>
-        <li>Teclas mecânicas</li>
-        <li>Conexão USB</li>
-        <li>Layout ABNT2</li>
-        <li>Iluminação</li>
-      </ul>
-
-      <details>
-        <summary>Garantia e Suporte</summary>
-
-        <p>
-          O produto possui 90 dias de Garantia Legal, conforme o Código de
-          Defesa do Consumidor, mais 9 meses de Garantia do Fabricante,
-          totalizando 12 meses de garantia.
-        </p>
-      </details>
-
-      <h3>Calcular Frete</h3>
-
-      <form id="form-frete-3">
-        <label for="cep3">CEP:</label>
-
-        <input type="text" id="cep3" placeholder="00000-000" />
-
-        <button type="submit">Calcular</button>
-      </form>
-
-      <p id="resultado-frete-3"></p>
-
-      <label for="quantidade3">Quantidade:</label>
-
-      <input type="number" id="quantidade3" value="1" min="1" />
-
-      <br /><br />
-
-      <a href="carrinho.html">Adicionar ao Carrinho</a>
-
-      <button popovertarget="produto3">Fechar</button>
-    </div>
 
     <footer id="footer"></footer>
 
-    <script src="/Components/components.js"></script>
+    <script src="../Components/components.js"></script>
+
+    <script>
+      const produtos = [
+        {
+          id: "TN-SM-001",
+          nome: "Smartphone TechPhone X",
+          preco: 2499.9,
+          categoria: "Smartphones",
+          imagem:
+            "https://via.placeholder.com/400x400/EBF3FA/0066CC?text=Smartphone+TechPhone+X",
+          descricao:
+            "Smartphone TechPhone X com tela de alta qualidade e ótimo desempenho.",
+        },
+        {
+          id: "TN-FN-002",
+          nome: "Fone Bluetooth TechSound",
+          preco: 299.9,
+          categoria: "Áudio",
+          imagem:
+            "https://via.placeholder.com/400x400/EBF3FA/0066CC?text=Fone+TechSound",
+          descricao:
+            "Fone Bluetooth TechSound com conexão sem fio e som de qualidade.",
+        },
+        {
+          id: "TN-TC-003",
+          nome: "Teclado Mecânico TechKeys",
+          preco: 449.9,
+          categoria: "Periféricos",
+          imagem:
+            "https://via.placeholder.com/400x400/EBF3FA/0066CC?text=Teclado+TechKeys",
+          descricao: "Teclado mecânico TechKeys, ideal para digitação e jogos.",
+        },
+      ];
+
+      const chaveCarrinho = "carrinhoTechNova";
+
+      function obterCarrinho() {
+        return JSON.parse(localStorage.getItem(chaveCarrinho)) || [];
+      }
+
+      function salvarCarrinho(carrinho) {
+        localStorage.setItem(chaveCarrinho, JSON.stringify(carrinho));
+      }
+
+      function adicionarCarrinho(id) {
+        const produto = produtos.find((item) => item.id === id);
+
+        if (!produto) {
+          return;
+        }
+
+        const carrinho = obterCarrinho();
+        const itemExistente = carrinho.find((item) => item.id === id);
+
+        if (itemExistente) {
+          itemExistente.quantidade++;
+        } else {
+          carrinho.push({
+            id: produto.id,
+            nome: produto.nome,
+            preco: produto.preco,
+            imagem: produto.imagem,
+            quantidade: 1,
+          });
+        }
+
+        salvarCarrinho(carrinho);
+
+        document.getElementById("mensagem-produto").textContent =
+          produto.nome + " foi adicionado ao carrinho!";
+      }
+
+      document.querySelectorAll(".adicionar-carrinho").forEach((botao) => {
+        botao.addEventListener("click", function () {
+          adicionarCarrinho(this.dataset.id);
+        });
+      });
+
+      document.querySelectorAll(".mostrar-detalhes").forEach((botao) => {
+        botao.addEventListener("click", function () {
+          const produto = produtos.find((item) => item.id === this.dataset.id);
+
+          if (produto) {
+            document.getElementById("detalhe-nome").textContent = produto.nome;
+
+            document.getElementById("detalhe-descricao").textContent =
+              produto.descricao;
+
+            document.getElementById("detalhe-preco").textContent =
+              "Preço: R$ " + produto.preco.toFixed(2).replace(".", ",");
+
+            document.getElementById("detalhes-produto").hidden = false;
+          }
+        });
+      });
+
+      document
+        .getElementById("fechar-detalhes")
+        .addEventListener("click", function () {
+          document.getElementById("detalhes-produto").hidden = true;
+        });
+
+      function filtrarProdutos() {
+        const pesquisa = document
+          .getElementById("pesquisa")
+          .value.toLowerCase();
+
+        const categoria = document.getElementById("filtro-categoria").value;
+
+        const ordenacao = document.getElementById("ordenacao").value;
+
+        let produtosFiltrados = produtos.filter((produto) => {
+          const nomeCombina = produto.nome.toLowerCase().includes(pesquisa);
+          const categoriaCombina =
+            categoria === "" || produto.categoria === categoria;
+
+          return nomeCombina && categoriaCombina;
+        });
+
+        if (ordenacao === "menor") {
+          produtosFiltrados.sort((a, b) => a.preco - b.preco);
+        } else if (ordenacao === "maior") {
+          produtosFiltrados.sort((a, b) => b.preco - a.preco);
+        } else if (ordenacao === "nome") {
+          produtosFiltrados.sort((a, b) => a.nome.localeCompare(b.nome));
+        }
+
+        document.querySelectorAll(".produto").forEach((elemento) => {
+          const id = elemento.querySelector(".adicionar-carrinho").dataset.id;
+
+          const encontrado = produtosFiltrados.some(
+            (produto) => produto.id === id,
+          );
+
+          elemento.hidden = !encontrado;
+        });
+      }
+
+      document
+        .getElementById("pesquisa")
+        .addEventListener("input", filtrarProdutos);
+
+      document
+        .getElementById("filtro-categoria")
+        .addEventListener("change", filtrarProdutos);
+
+      document
+        .getElementById("ordenacao")
+        .addEventListener("change", filtrarProdutos);
+    </script>
   </body>
 </html>
