@@ -1,0 +1,420 @@
+/* =========================================================
+   TechNova Store - MINHA CONTA (profile.css)
+   ========================================================= */
+
+   :root {
+    --navy: #0b1d4a;
+    --blue: #3174c2;
+    --blue-soft: #dbeafe;
+    --blue-soft-text: #1d4ed8;
+    --green: #16a34a;
+    --green-dark: #128a3e;
+    --green-soft: #d1fae5;
+    --red: #e11d48;
+    --gray-bg: #f7f8fb;
+    --field-bg: #f3f4f6;
+    --gray-border: #e5e7eb;
+    --text: #1f2937;
+    --text-light: #6b7280;
+    --white: #ffffff;
+    --radius: 12px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+    background: var(--gray-bg);
+    color: var(--text);
+    line-height: 1.5;
+}
+
+/* Os <hr> do HTML ficam ocultos: a separação é feita pelos cards */
+hr {
+    display: none;
+}
+
+/* =========================================================
+   LAYOUT: COLUNA LATERAL + CONTEÚDO
+   ========================================================= */
+
+main {
+    width: calc(100% - 32px);
+    max-width: 1000px;
+    margin: 32px auto;
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 24px;
+    align-items: start;
+}
+
+/* =========================================================
+   COLUNA LATERAL
+   ========================================================= */
+
+.profile-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: sticky;
+    top: 130px;
+}
+
+/* Card do perfil */
+.profile-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 28px 16px 24px;
+    background: var(--white);
+    border: 1px solid var(--gray-border);
+    border-radius: var(--radius);
+}
+
+.avatar {
+    position: relative;
+    width: 90px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid var(--text);
+    border-radius: 50%;
+    margin-bottom: 14px;
+}
+
+.avatar-icon {
+    font-size: 40px;
+    line-height: 1;
+}
+
+.avatar-edit {
+    position: absolute;
+    right: -10px;
+    bottom: -6px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--white);
+    border: 1.5px solid var(--text);
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.avatar-edit:hover {
+    background: var(--field-bg);
+}
+
+.profile-card h2 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.profile-card p {
+    font-size: 12px;
+    color: var(--text);
+    margin-bottom: 14px;
+    word-break: break-all;
+}
+
+.vip-badge {
+    padding: 4px 12px;
+    background: var(--blue-soft);
+    color: var(--blue-soft-text);
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+/* Menu da conta */
+.profile-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 14px 12px;
+    background: var(--white);
+    border: 1px solid var(--gray-border);
+    border-radius: var(--radius);
+}
+
+.profile-menu a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-light);
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+}
+
+.profile-menu a span {
+    font-size: 15px;
+    width: 20px;
+    text-align: center;
+}
+
+.profile-menu a:hover {
+    background: var(--field-bg);
+    color: var(--text);
+}
+
+.profile-menu a.active {
+    background: var(--blue);
+    color: var(--white);
+}
+
+.profile-menu a.logout {
+    color: var(--red);
+}
+
+.profile-menu a.logout:hover {
+    background: #fff1f2;
+}
+
+/* =========================================================
+   CONTEÚDO: CARDS
+   ========================================================= */
+
+.profile-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.profile-content > section {
+    background: var(--white);
+    border: 1px solid var(--gray-border);
+    border-radius: var(--radius);
+    padding: 24px 28px 28px;
+    scroll-margin-top: 130px;
+}
+
+.profile-content > section > h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--gray-border);
+}
+
+/* =========================================================
+   MEUS DADOS PESSOAIS (formulário)
+   ========================================================= */
+
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.section-header h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.verified-badge {
+    padding: 4px 12px;
+    background: var(--green-soft);
+    color: var(--green-dark);
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.section-subtitle {
+    font-size: 14px;
+    color: var(--text);
+    padding-bottom: 14px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--gray-border);
+}
+
+fieldset {
+    border: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* legend continua no HTML (acessibilidade), mas fica oculta visualmente */
+legend {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    height: 40px;
+    padding: 0 14px;
+    background: var(--field-bg);
+    border: 1.5px solid transparent;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    background: var(--white);
+    border-color: var(--blue);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.btn-save {
+    align-self: center;
+    margin-top: 10px;
+    padding: 11px 32px;
+    background: var(--green);
+    color: var(--white);
+    border: none;
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.btn-save:hover {
+    background: var(--green-dark);
+    transform: translateY(-1px);
+}
+
+/* =========================================================
+   MEUS PEDIDOS
+   ========================================================= */
+
+#pedidos {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+#pedidos > h2 {
+    margin-bottom: 6px;
+}
+
+#pedidos > div {
+    padding: 16px 20px;
+    border: 1px solid var(--gray-border);
+    border-radius: 10px;
+    transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+#pedidos > div:hover {
+    border-color: var(--blue);
+    box-shadow: 0 4px 14px rgba(49, 116, 194, 0.12);
+}
+
+#pedidos h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 8px;
+}
+
+#pedidos p {
+    font-size: 13px;
+    color: var(--text-light);
+    margin-bottom: 2px;
+}
+
+/* =========================================================
+   PRIVACIDADE E LGPD
+   ========================================================= */
+
+#privacidade p {
+    font-size: 14px;
+    color: var(--text-light);
+    margin-bottom: 18px;
+}
+
+#privacidade button {
+    padding: 11px 24px;
+    background: var(--white);
+    color: var(--red);
+    border: 1.5px solid var(--red);
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+#privacidade button:hover {
+    background: var(--red);
+    color: var(--white);
+}
+
+/* =========================================================
+   RESPONSIVO
+   ========================================================= */
+
+@media (max-width: 800px) {
+    main {
+        grid-template-columns: 1fr;
+        margin: 20px auto;
+    }
+
+    .profile-sidebar {
+        position: static;
+    }
+}
+
+@media (max-width: 600px) {
+    .profile-content > section {
+        padding: 18px 16px 22px;
+    }
+
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
