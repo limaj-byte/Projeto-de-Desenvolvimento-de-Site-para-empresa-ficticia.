@@ -54,34 +54,32 @@
 
         <hr>
 
-        <!-- Escolha do frete -->
+        <!-- Tipo de entrega -->
         <section>
-            <h2>2. Escolha do Frete</h2>
+            <h2>2. Tipo de Entrega</h2>
 
-            <form>
-                <label>
-                    <input type="radio" name="frete" value="economico" required>
-                    Frete Econômico - R$ 15,00 (5 a 8 dias úteis)
-                </label>
-                <br>
-
-                <label>
-                    <input type="radio" name="frete" value="expresso">
-                    Frete Expresso - R$ 30,00 (2 a 3 dias úteis)
-                </label>
-                <br>
-
-                <label>
-                    <input type="radio" name="frete" value="gratis">
-                    Frete Grátis - 10 a 15 dias úteis
-                </label>
-
-                <label>
-                    <input type="radio" name="frete" value="Retirar">
-                    Retirar no Local
-                </label>
+            <form id="form-entrega">
+                <p>
+                    <label for="tipo-entrega">Como você deseja receber seu pedido?</label><br>
+                    <select id="tipo-entrega" name="tipo-entrega" required>
+                        <option value="" disabled>Selecione uma opção</option>
+                        <option value="economico">Entrega econômica — R$ 15,00 (5 a 8 dias úteis)</option>
+                        <option value="expresso">Entrega expressa — R$ 30,00 (2 a 3 dias úteis)</option>
+                        <option value="gratis">Entrega grátis — 10 a 15 dias úteis</option>
+                        <option value="retirada" selected>Retirar na loja — grátis</option>
+                    </select>
+                </p>
 
             </form>
+
+            <aside id="informacoes-retirada" aria-labelledby="titulo-retirada">
+                <h3 id="titulo-retirada">Retire na loja</h3>
+                <p><strong>TechNova Store — Unidade Centro</strong></p>
+                <p>Av. Brasil, 850, Centro — Ji-Paraná, RO</p>
+                <p><strong>Disponível para retirada:</strong> hoje, em até 2 horas após a confirmação do pagamento.</p>
+                <p><strong>Horário:</strong> segunda a sábado, das 9h às 18h.</p>
+                <p>Apresente o número do pedido e um documento com foto no balcão.</p>
+            </aside>
         </section>
 
         <hr>
@@ -91,35 +89,57 @@
             <h2>3. Forma de Pagamento</h2>
 
             <form>
-                <fieldset>
+                <fieldset id="selecao-pagamento">
+                    <legend>Escolha como deseja pagar</legend>
+
+                    <p>
+                        <label for="pagamento-pix">
+                            <input type="radio" id="pagamento-pix" name="pagamento" value="pix" checked aria-describedby="descricao-pix" aria-controls="opcao-pix">
+                            <strong>Pix</strong> — pagamento instantâneo
+                        </label>
+                    </p>
+
+                    <p>
+                        <label for="pagamento-cartao">
+                            <input type="radio" id="pagamento-cartao" name="pagamento" value="cartao" aria-describedby="descricao-cartao" aria-controls="opcao-cartao">
+                            <strong>Cartão de crédito</strong> — parcele sua compra sem juros
+                        </label>
+                    </p>
+
+                    <p>
+                        <label for="pagamento-boleto">
+                            <input type="radio" id="pagamento-boleto" name="pagamento" value="boleto" aria-describedby="descricao-boleto" aria-controls="opcao-boleto">
+                            <strong>Boleto bancário</strong> — vencimento em até 3 dias úteis
+                        </label>
+                    </p>
+                </fieldset>
+
+                <br>
+
+                <fieldset id="opcao-pix">
                     <legend>Pix</legend>
 
-                    <label>
-                        <input type="radio" name="pagamento" value="pix">
-                        Pagar com Pix
-                    </label>
-
-                    <p>QR Code Pix (simulado):</p>
+                    <p id="descricao-pix">Escaneie o QR Code abaixo para simular o pagamento:</p>
 
                     <img
-                        src="https://placehold.co/200x200?text=QR+Code+Pix"
-                        alt="QR Code Pix fictício">
+                        src="https://commons.wikimedia.org/wiki/Special:FilePath/Rickrolling_QR_code.png"
+                        alt="QR Code Pix fictício para demonstração"
+                        width="200"
+                        height="200">
+                    <p><small><a href="https://commons.wikimedia.org/wiki/File:Rickrolling_QR_code.png">Vysulo</a>, domínio público, via Wikimedia Commons.</small></p>
 
-                    <p><strong>Chave Pix fictícia:</strong></p>
-                    <p>technova@example.com</p>
+                    <p><strong>Chave Pix fictícia:</strong> technova@example.com</p>
+                    <p><small>Ambiente de demonstração: nenhum pagamento será processado.</small></p>
 
                     <button type="button">Copiar Chave Pix</button>
                 </fieldset>
 
                 <br>
 
-                <fieldset>
+                <fieldset id="opcao-cartao" hidden>
                     <legend>Cartão de Crédito</legend>
 
-                    <label>
-                        <input type="radio" name="pagamento" value="cartao">
-                        Pagar com Cartão de Crédito
-                    </label>
+                    <p id="descricao-cartao">Use um cartão de crédito para escolher o número de parcelas.</p>
 
                     <p>
                         <label for="titular">Nome do titular:</label><br>
@@ -160,15 +180,10 @@
 
                 <br>
 
-                <fieldset>
+                <fieldset id="opcao-boleto" hidden>
                     <legend>Boleto Bancário</legend>
 
-                    <label>
-                        <input type="radio" name="pagamento" value="boleto">
-                        Pagar com Boleto
-                    </label>
-
-                    <p>
+                    <p id="descricao-boleto">
                         O boleto será gerado após a finalização do pedido.
                     </p>
 
@@ -241,6 +256,20 @@
             document.getElementById('cep-exibicao').textContent = document.getElementById('cep').value;
             formularioEndereco.hidden = true;
             dadosEndereco.hidden = false;
+        });
+
+        const opcoesPagamento = {
+            pix: document.getElementById('opcao-pix'),
+            cartao: document.getElementById('opcao-cartao'),
+            boleto: document.getElementById('opcao-boleto')
+        };
+
+        document.querySelectorAll('input[name="pagamento"]').forEach((opcao) => {
+            opcao.addEventListener('change', () => {
+                Object.entries(opcoesPagamento).forEach(([forma, painel]) => {
+                    painel.hidden = forma !== opcao.value;
+                });
+            });
         });
     </script>
 
