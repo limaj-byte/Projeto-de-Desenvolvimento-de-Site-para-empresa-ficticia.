@@ -1,15 +1,17 @@
 async function carregarComponente(id, arquivo) {
-    const elemento = document.getElementById(id);
-
-    if (elemento) {
-        const resposta = await fetch(arquivo);
-        const conteudo = await resposta.text();
-
-        elemento.innerHTML = conteudo;
-    }
+  const elemento = document.getElementById(id);
+  if (!elemento) return;
+  try {
+    const resposta = await fetch(arquivo);
+    if (!resposta.ok) throw new Error(`Falha ao carregar ${arquivo}`);
+    elemento.innerHTML = await resposta.text();
+    document.dispatchEvent(new CustomEvent("technova:component-loaded", { detail: { id } }));
+  } catch (erro) {
+    console.error(erro);
+  }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-    carregarComponente("header", "../Components/header.html");
-    carregarComponente("footer", "../Components/footer.html");
+document.addEventListener("DOMContentLoaded", () => {
+  carregarComponente("header", "/Components/header.html");
+  carregarComponente("footer", "/Components/footer.html");
 });

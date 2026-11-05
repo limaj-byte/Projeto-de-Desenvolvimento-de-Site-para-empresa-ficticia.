@@ -1,50 +1,26 @@
-    <header class="header">
-    <div class="header-container">
-
-        <a href="/homepage.html" class="logo">
-            TechNova Store
-        </a>
-        
-        <head>
-            <link rel="stylesheet" href="/Styles/header.css">
-        </head>
-
-        <form class="search">
-            <input type="text" placeholder="O que você está procurando?">
-            <button type="submit" onclick="window.location.href='/busca.html'">🔍</button>
-        </form>
-
-        <nav class="categories">
-            <a href="#">Smartphones</a>
-            <a href="#">Smart Home</a>
-            <a href="#">Periféricos</a>
-            <a href="#">Informática</a>
-            <a href="#">Acessórios</a>
-        </nav>
-
-        <div class="header-actions">
-
-            <a href="/profile.html" class="account">
-                👤
-                <span>Minha Conta</span>
-            </a>
-
-            <a href="/carrinho.html" class="cart">
-                🛒
-                <span>Carrinho</span>
-                <span id="cart-count">0</span>
-
-            </a>
-
-        </div>
-
-    </div>
-
-    <nav class="tn-nav" aria-label="Navegação principal">
-        <a href="/homepage.html">Início</a>
-        <a href="/produtos.html">Catálogo</a>
-        <a href="/homepage.html#categorias">Categorias</a>
-        <a href="/homepage.html#lancamentos">Ofertas</a>
-        <a href="/profile.html">Minha Conta</a>
+<header class="header">
+  <div class="header-container">
+    <a href="/homepage.html" class="logo" aria-label="TechNova Store - página inicial">TechNova Store</a>
+    <form class="search" action="/produtos.html" method="get" role="search">
+      <label class="visually-hidden" for="busca-cabecalho">Buscar produtos</label>
+      <input type="search" id="busca-cabecalho" name="q" placeholder="O que você está procurando?">
+      <button type="submit" aria-label="Buscar">🔍</button>
+    </form>
+    <nav class="categories" aria-label="Categorias">
+      <a href="/produtos.html">Smartphones</a>
+      <a href="/produtos.html">Áudio</a>
+      <a href="/produtos.html">Periféricos</a>
     </nav>
+    <div class="header-actions">
+      <a href="/profile.html" class="account" aria-label="Minha conta">👤 <span>Minha conta</span></a>
+      <a href="/carrinho.html" class="cart" aria-label="Carrinho">🛒 <span>Carrinho</span> <span id="cart-count">0</span></a>
+    </div>
+  </div>
+  <nav class="tn-nav" aria-label="Navegação principal">
+    <a href="/homepage.html">Início</a>
+    <a href="/produtos.html">Catálogo</a>
+    <a href="/homepage.html#categorias">Categorias</a>
+    <a href="/homepage.html#lancamentos">Ofertas</a>
+    <a href="/profile.html">Minha conta</a>
+  </nav>
 </header>
