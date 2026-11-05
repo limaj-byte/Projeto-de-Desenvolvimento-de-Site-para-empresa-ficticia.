@@ -5,44 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Entre na sua conta da TechNova Store.">
     <title>Entrar | TechNova Store</title>
+    <link rel="stylesheet" href="Styles/auth.css">
 </head>
-<body>
-    <header>
-        <a href="homepage.html" aria-label="TechNova Store - página inicial">TechNova Store</a>
-        <h1>Entrar na minha conta</h1>
+<body class="auth-page">
+    <header class="auth-header">
+        <a href="homepage.html" aria-label="TechNova Store - página inicial">
+            <img src="Images/technova-store-logo.png" alt="TechNova Store">
+        </a>
     </header>
 
-    <main>
-        <section aria-labelledby="titulo-login">
-            <h2 id="titulo-login">Acesse sua conta</h2>
+    <main class="auth-main">
+        <section class="auth-card login-card" aria-labelledby="titulo-login">
+            <svg class="login-icon" viewBox="0 0 48 40" aria-hidden="true">
+                <rect x="7" y="3" width="34" height="25" rx="1" fill="none" stroke="currentColor" stroke-width="2.5"></rect>
+                <path d="M3 35h42l-4-6H7l-4 6Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"></path>
+            </svg>
+            <h1 id="titulo-login">Entrar na minha conta</h1>
+            <p class="auth-subtitle">Acesse sua conta</p>
             <form id="form-login" action="#" method="post">
-                <p>
-                    <label for="login-email">E-mail</label><br>
+                <div class="auth-field">
+                    <label for="login-email">E-mail</label>
                     <input type="email" id="login-email" name="email" autocomplete="email"
                         placeholder="voce@exemplo.com" required>
-                </p>
-                <p>
-                    <label for="login-senha">Senha</label><br>
+                </div>
+                <div class="auth-field">
+                    <label for="login-senha">Senha</label>
                     <input type="password" id="login-senha" name="senha" autocomplete="current-password"
                         minlength="8" required>
-                </p>
-                <p>
+                </div>
+                <div class="remember-option">
                     <input type="checkbox" id="lembrar-login" name="lembrar-login">
                     <label for="lembrar-login">Manter conectado neste dispositivo</label>
-                </p>
-                <button type="submit">Entrar</button>
+                </div>
+                <button class="auth-submit" type="submit">Entrar</button>
             </form>
-        </section>
 
-        <section aria-labelledby="titulo-cadastro">
-            <h2 id="titulo-cadastro">Ainda não tem uma conta?</h2>
-            <p><a href="cadastro.html">Criar uma conta</a></p>
+            <div class="auth-switch">
+                <p>Ainda não tem uma conta?</p>
+                <a class="auth-secondary-button" href="cadastro.html">Criar uma conta</a>
+            </div>
+            <a class="home-button" href="homepage.html">Voltar à página inicial</a>
         </section>
     </main>
 
-    <footer>
-        <p><a href="homepage.html">Voltar à página inicial</a></p>
-        <p>TechNova Store - Ambiente de demonstração.</p>
+    <footer class="auth-footer">
+        <p><a href="homepage.html">Início</a><span> · </span><a href="cadastro.html">Criar conta</a></p>
+        <p>&copy; 2026 TechNova Store. Todos os direitos reservados.</p>
     </footer>
 </body>
 </html>
