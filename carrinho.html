@@ -1,12 +1,10 @@
 <!doctype html>
-
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Carrinho - TechNova Store</title>
   </head>
-
   <body>
     <header id="header"></header>
 
@@ -25,53 +23,9 @@
           </tr>
         </thead>
 
-        <tbody>
+        <tbody id="itens-carrinho">
           <tr>
-            <td>
-              <img
-                src="https://via.placeholder.com/150x150/EBF3FA/0066CC?text=Smartphone"
-                alt="Smartphone"
-                width="100"
-              />
-            </td>
-
-            <td>Smartphone TechPhone X</td>
-
-            <td>R$ 2.499,90</td>
-
-            <td>
-              <input type="number" value="1" min="1" />
-            </td>
-
-            <td>R$ 2.499,90</td>
-
-            <td>
-              <button type="button">Remover</button>
-            </td>
-          </tr>
-
-          <tr>
-            <td>
-              <img
-                src="https://via.placeholder.com/150x150/EBF3FA/0066CC?text=Fone"
-                alt="Fone Bluetooth"
-                width="100"
-              />
-            </td>
-
-            <td>Fone Bluetooth TechSound</td>
-
-            <td>R$ 299,90</td>
-
-            <td>
-              <input type="number" value="1" min="1" />
-            </td>
-
-            <td>R$ 299,90</td>
-
-            <td>
-              <button type="button">Remover</button>
-            </td>
+            <td colspan="6">Seu carrinho está vazio.</td>
           </tr>
         </tbody>
       </table>
@@ -79,14 +33,12 @@
       <hr />
 
       <section>
-        <h2>Cupom de Desconto</h2>
+        <h2>Cupom de desconto</h2>
 
         <form id="form-cupom">
-          <label for="cupom"> Código do cupom: </label>
+          <input type="text" id="cupom" placeholder="Digite seu cupom" />
 
-          <input type="text" id="cupom" placeholder="Digite o cupom" />
-
-          <button type="submit">Aplicar</button>
+          <button type="submit">Aplicar cupom</button>
         </form>
 
         <p id="mensagem-cupom"></p>
@@ -95,14 +47,17 @@
       <hr />
 
       <section>
-        <h2>Frete</h2>
+        <h2>Calcular frete</h2>
 
         <form id="form-frete-carrinho">
-          <label for="cep-carrinho"> CEP: </label>
+          <input
+            type="text"
+            id="cep-carrinho"
+            placeholder="Digite seu CEP"
+            maxlength="9"
+          />
 
-          <input type="text" id="cep-carrinho" placeholder="00000-000" />
-
-          <button type="submit">Calcular</button>
+          <button type="submit">Calcular frete</button>
         </form>
 
         <p id="resultado-frete-carrinho"></p>
@@ -111,104 +66,265 @@
       <hr />
 
       <section>
-        <h2>Resumo da Compra</h2>
+        <h2>Resumo da compra</h2>
 
-        <p>
-          Subtotal:
-          <span id="subtotal">2799.80</span>
-        </p>
-
-        <p>
-          Frete:
-          <span id="frete">0.00</span>
-        </p>
-
-        <p>
-          Desconto:
-          <span id="desconto">0.00</span>
-        </p>
-
-        <p>
-          <strong> Total: R$ <span id="total">2799.80</span> </strong>
-        </p>
-
-        <a href="checkoutpagamento.html">Finalizar Compra</a>
+        <p>Subtotal: R$ <span id="subtotal">0,00</span></p>
+        <p>Frete: R$ <span id="frete">0,00</span></p>
+        <p>Desconto: R$ <span id="desconto">0,00</span></p>
+        <h3>Total: R$ <span id="total">0,00</span></h3>
       </section>
 
-      <br />
+      <hr />
 
-      <a href="produtos.html"> Continuar Comprando </a>
+      <a href="checkoutpagamento.html" id="finalizar-compra">
+        Finalizar Compra
+      </a>
+
+      <br /><br />
+
+      <a href="produtos.html">Continuar Comprando</a>
     </main>
 
     <footer id="footer"></footer>
 
-    <script src="/Components/components.js"></script>
+    <script src="../Components/components.js"></script>
 
     <script>
-      let subtotal = 2799.8;
-      let desconto = 0;
-      let frete = 0;
+      const chaveCarrinho = "carrinhoTechNova";
+
+      let descontoAplicado = false;
+      let valorFrete = 0;
+
+      function obterCarrinho() {
+        return JSON.parse(localStorage.getItem(chaveCarrinho)) || [];
+      }
+
+      function salvarCarrinho(carrinho) {
+        localStorage.setItem(chaveCarrinho, JSON.stringify(carrinho));
+      }
+
+      function formatarMoeda(valor) {
+        return valor.toFixed(2).replace(".", ",");
+      }
+
+      function calcularSubtotal() {
+        const carrinho = obterCarrinho();
+
+        return carrinho.reduce((soma, item) => {
+          return soma + item.preco * item.quantidade;
+        }, 0);
+      }
+
+      function mostrarCarrinho() {
+        const carrinho = obterCarrinho();
+        const tabela = document.getElementById("itens-carrinho");
+
+        tabela.innerHTML = "";
+
+        if (carrinho.length === 0) {
+          tabela.innerHTML = `
+                    <tr>
+                        <td colspan="6">Seu carrinho está vazio.</td>
+                    </tr>
+                `;
+
+          atualizarValores();
+          return;
+        }
+
+        carrinho.forEach((item) => {
+          const linha = document.createElement("tr");
+
+          linha.innerHTML = `
+                    <td>
+                        <img
+                            src="${item.imagem}"
+                            alt="${item.nome}"
+                            width="70"
+                        >
+                    </td>
+
+                    <td>${item.nome}</td>
+
+                    <td>R$ ${formatarMoeda(item.preco)}</td>
+
+                    <td>
+                        <button class="diminuir" data-id="${item.id}">
+                            -
+                        </button>
+
+                        ${item.quantidade}
+
+                        <button class="aumentar" data-id="${item.id}">
+                            +
+                        </button>
+                    </td>
+
+                    <td>
+                        R$ ${formatarMoeda(item.preco * item.quantidade)}
+                    </td>
+
+                    <td>
+                        <button class="remover" data-id="${item.id}">
+                            Remover
+                        </button>
+                    </td>
+                `;
+
+          tabela.appendChild(linha);
+        });
+
+        document.querySelectorAll(".aumentar").forEach((botao) => {
+          botao.addEventListener("click", function () {
+            alterarQuantidade(this.dataset.id, 1);
+          });
+        });
+
+        document.querySelectorAll(".diminuir").forEach((botao) => {
+          botao.addEventListener("click", function () {
+            alterarQuantidade(this.dataset.id, -1);
+          });
+        });
+
+        document.querySelectorAll(".remover").forEach((botao) => {
+          botao.addEventListener("click", function () {
+            removerProduto(this.dataset.id);
+          });
+        });
+
+        atualizarValores();
+      }
+
+      function alterarQuantidade(id, valor) {
+        const carrinho = obterCarrinho();
+        const item = carrinho.find((produto) => produto.id === id);
+
+        if (item) {
+          item.quantidade += valor;
+
+          if (item.quantidade <= 0) {
+            const indice = carrinho.findIndex((produto) => produto.id === id);
+
+            carrinho.splice(indice, 1);
+          }
+        }
+
+        salvarCarrinho(carrinho);
+        mostrarCarrinho();
+      }
+
+      function removerProduto(id) {
+        let carrinho = obterCarrinho();
+
+        carrinho = carrinho.filter((item) => item.id !== id);
+
+        salvarCarrinho(carrinho);
+        mostrarCarrinho();
+      }
+
+      function atualizarValores() {
+        const subtotal = calcularSubtotal();
+
+        let desconto = 0;
+
+        if (descontoAplicado) {
+          desconto = subtotal * 0.1;
+        }
+
+        if (subtotal > 299) {
+          valorFrete = 0;
+
+          document.getElementById("resultado-frete-carrinho").textContent =
+            "Frete grátis para compras acima de R$ 299,00.";
+        }
+
+        const total = subtotal + valorFrete - desconto;
+
+        document.getElementById("subtotal").textContent =
+          formatarMoeda(subtotal);
+
+        document.getElementById("frete").textContent =
+          formatarMoeda(valorFrete);
+
+        document.getElementById("desconto").textContent =
+          formatarMoeda(desconto);
+
+        document.getElementById("total").textContent = formatarMoeda(
+          Math.max(total, 0),
+        );
+      }
 
       document
         .getElementById("form-cupom")
-        .addEventListener("submit", function (event) {
-          event.preventDefault();
+        .addEventListener("submit", function (evento) {
+          evento.preventDefault();
 
-          let cupom = document.getElementById("cupom").value.toUpperCase();
+          const cupom = document
+            .getElementById("cupom")
+            .value.trim()
+            .toUpperCase();
+
+          const mensagem = document.getElementById("mensagem-cupom");
 
           if (cupom === "TECH10") {
-            desconto = subtotal * 0.1;
-
-            document.getElementById("mensagem-cupom").textContent =
-              "Cupom aplicado com sucesso! 10% de desconto.";
+            descontoAplicado = true;
+            mensagem.textContent =
+              "Cupom TECH10 aplicado! Você ganhou 10% de desconto.";
           } else {
-            desconto = 0;
-
-            document.getElementById("mensagem-cupom").textContent =
-              "Cupom inválido.";
+            descontoAplicado = false;
+            mensagem.textContent = "Cupom inválido.";
           }
 
-          atualizarTotal();
+          atualizarValores();
         });
 
       document
         .getElementById("form-frete-carrinho")
-        .addEventListener("submit", function (event) {
-          event.preventDefault();
+        .addEventListener("submit", function (evento) {
+          evento.preventDefault();
 
-          let cep = document.getElementById("cep-carrinho").value;
+          const cep = document
+            .getElementById("cep-carrinho")
+            .value.replace(/\D/g, "");
 
-          if (subtotal > 299) {
-            frete = 0;
+          const resultado = document.getElementById("resultado-frete-carrinho");
 
-            document.getElementById("resultado-frete-carrinho").textContent =
-              "Frete grátis para compras acima de R$ 299,00.";
-          } else if (cep.charAt(0) >= "0" && cep.charAt(0) <= "3") {
-            frete = 15;
+          if (cep.length !== 8) {
+            resultado.textContent = "Digite um CEP válido com 8 números.";
 
-            document.getElementById("resultado-frete-carrinho").textContent =
-              "Frete: R$ 15,00 - Prazo: 3 dias.";
-          } else {
-            frete = 25;
-
-            document.getElementById("resultado-frete-carrinho").textContent =
-              "Frete: R$ 25,00 - Prazo: 7 dias.";
+            return;
           }
 
-          atualizarTotal();
+          const primeiroNumero = Number(cep.charAt(0));
+
+          if (calcularSubtotal() > 299) {
+            valorFrete = 0;
+
+            resultado.textContent = "Frete grátis! Prazo estimado: 3 a 7 dias.";
+          } else if (primeiroNumero <= 3) {
+            valorFrete = 15;
+
+            resultado.textContent = "Frete: R$ 15,00. Prazo estimado: 3 dias.";
+          } else {
+            valorFrete = 25;
+
+            resultado.textContent = "Frete: R$ 25,00. Prazo estimado: 7 dias.";
+          }
+
+          atualizarValores();
         });
 
-      function atualizarTotal() {
-        let total = subtotal + frete - desconto;
+      document
+        .getElementById("finalizar-compra")
+        .addEventListener("click", function (evento) {
+          if (obterCarrinho().length === 0) {
+            evento.preventDefault();
 
-        document.getElementById("subtotal").textContent = subtotal.toFixed(2);
+            alert("Adicione pelo menos um produto ao carrinho.");
+          }
+        });
 
-        document.getElementById("frete").textContent = frete.toFixed(2);
-
-        document.getElementById("desconto").textContent = desconto.toFixed(2);
-
-        document.getElementById("total").textContent = total.toFixed(2);
-      }
+      mostrarCarrinho();
     </script>
   </body>
 </html>

@@ -1,0 +1,201 @@
+/* =========================================================
+   TechNova Store - HEADER
+   (autossuficiente: pode ser usado em qualquer página)
+   ========================================================= */
+
+   :root {
+    --navy: #0b1d4a;
+    --blue: #1e5bd8;
+    --blue-light: #2f80ed;
+    --orange: #f26a1b;
+    --white: #ffffff;
+    --text: #1f2937;
+    --radius: 12px;
+    --container: 1200px;
+}
+
+.header,
+.header * {
+    box-sizing: border-box;
+}
+
+.header a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.header button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+}
+
+.header {
+    width: calc(100% - 32px);
+    max-width: var(--container);
+    margin: 12px auto 0;
+    background: var(--navy);
+    border-radius: var(--radius);
+    color: var(--white);
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+    position: sticky;
+    top: 8px;
+    z-index: 100;
+    box-shadow: 0 4px 14px rgba(11, 29, 74, 0.25);
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 14px 24px;
+}
+
+/* Logo */
+.logo {
+    display: block;
+    width: 150px;
+    height: 48px;
+    background: url("../Images/technova-store-logo.png") no-repeat left center;
+    background-size: contain;
+    flex-shrink: 0;
+
+    /* esconde o texto "TechNova Store", mas mantém para leitores de tela */
+    font-size: 0;
+    color: transparent;
+    overflow: hidden;
+}
+
+/* Busca */
+.search {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    max-width: 520px;
+    background: var(--white);
+    border-radius: 6px;
+    overflow: hidden;
+    height: 38px;
+}
+
+.search input {
+    flex: 1;
+    height: 100%;
+    border: none;
+    outline: none;
+    padding: 0 14px;
+    font-size: 14px;
+    color: var(--text);
+    background: transparent;
+}
+
+.search input::placeholder {
+    color: #9ca3af;
+}
+
+.search button {
+    width: 44px;
+    height: 100%;
+    background: var(--blue);
+    color: var(--white);
+    font-size: 16px;
+    transition: background 0.2s;
+}
+
+.search button:hover {
+    background: var(--blue-light);
+}
+
+/* Categorias do topo (não aparecem no Figma) */
+.categories {
+    display: none;
+}
+
+/* Ações: conta e carrinho (somente ícones, como no Figma) */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.header-actions a {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
+    border-radius: 50%;
+    transition: background 0.2s;
+}
+
+.header-actions a:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.account span,
+.cart span:not(#cart-count) {
+    display: none;
+}
+
+#cart-count {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    border-radius: 9px;
+    background: var(--orange);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Navegação secundária */
+.tn-nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 24px 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    overflow-x: auto;
+}
+
+.tn-nav a {
+    color: var(--white);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 6px;
+    white-space: nowrap;
+    transition: background 0.2s;
+}
+
+.tn-nav a:hover {
+    background: rgba(255, 255, 255, 0.14);
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+    .header-container {
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 12px 16px;
+    }
+
+    .search {
+        order: 3;
+        flex-basis: 100%;
+        max-width: none;
+    }
+
+    .tn-nav {
+        padding: 4px 12px 10px;
+    }
+}
