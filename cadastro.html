@@ -1,130 +1,62 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Crie sua conta na TechNova Store.">
-    <title>Criar conta | TechNova Store</title>
-    <link rel="stylesheet" href="Styles/auth.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Crie sua conta TechNova Store.">
+  <title>Criar conta | TechNova Store</title>
+  <link rel="stylesheet" href="Styles/auth.css">
 </head>
 <body class="auth-page">
-    <header class="auth-header">
-        <a href="homepage.html" aria-label="TechNova Store - página inicial">
-            <img src="Images/technova-store-logo.png" alt="TechNova Store">
-        </a>
-    </header>
-
-    <main class="auth-main">
-        <section class="auth-card registration-card" aria-labelledby="titulo-cadastro">
-            <h1 id="titulo-cadastro">Criar uma conta</h1>
-            <p class="auth-subtitle">Preencha os dados abaixo para come&ccedil;ar.</p>
-            <form id="form-cadastro" action="#" method="post">
-            <fieldset>
-                <legend class="visually-hidden">Dados pessoais</legend>
-                <div class="auth-field">
-                    <label for="cadastro-nome">Nome completo</label>
-                    <input type="text" id="cadastro-nome" name="nome" autocomplete="name"
-                        maxlength="120" required>
-                </div>
-                <div class="auth-field">
-                    <label for="cadastro-cpf">CPF</label>
-                    <input type="text" id="cadastro-cpf" name="cpf" autocomplete="off"
-                        inputmode="numeric" placeholder="000.000.000-00" maxlength="14" required>
-                </div>
-                <div class="auth-field">
-                    <label for="cadastro-email">E-mail</label>
-                    <input type="email" id="cadastro-email" name="email" autocomplete="email"
-                        placeholder="voce@exemplo.com" required>
-                </div>
-                <div class="auth-field">
-                    <label for="cadastro-telefone">Telefone</label>
-                    <input type="tel" id="cadastro-telefone" name="telefone" autocomplete="tel"
-                        placeholder="(00) 00000-0000" required>
-                </div>
-                <div class="auth-field">
-                    <label for="cadastro-nascimento">Data de nascimento</label>
-                    <input type="date" id="cadastro-nascimento" name="data-nascimento"
-                        autocomplete="bday" required>
-                </div>
-            </fieldset>
-
-            <fieldset>
-                <legend class="visually-hidden">Endereço</legend>
-                <div class="auth-field">
-                    <label for="cadastro-cep">CEP</label>
-                    <input type="text" id="cadastro-cep" name="cep" autocomplete="postal-code"
-                        inputmode="numeric" placeholder="00000-000" maxlength="9" required>
-                </div>
-                <div class="auth-field">
-                    <label for="cadastro-logradouro">Endereço (rua ou avenida)</label>
-                    <input type="text" id="cadastro-logradouro" name="logradouro"
-                        autocomplete="address-line1" maxlength="150" required>
-                </div>
-                <div class="auth-field">
-                    <label for="cadastro-numero">Número</label>
-                    <input type="text" id="cadastro-numero" name="numero" autocomplete="address-line2"
-                        maxlength="20" required>
-                </div>
-                <div class="auth-field">
-                    <label for="cadastro-complemento">Complemento (opcional)</label>
-                    <input type="text" id="cadastro-complemento" name="complemento" maxlength="100">
-                </div>
-                <div class="auth-field">
-                    <label for="cadastro-bairro">Bairro</label>
-                    <input type="text" id="cadastro-bairro" name="bairro" maxlength="100" required>
-                </div>
-                <div class="auth-field">
-                    <label for="cadastro-cidade">Cidade</label>
-                    <input type="text" id="cadastro-cidade" name="cidade" autocomplete="address-level2"
-                        maxlength="100" required>
-                </div>
-                <div class="auth-field">
-                    <label for="cadastro-estado">Estado (UF)</label>
-                    <input type="text" id="cadastro-estado" name="estado" autocomplete="address-level1"
-                        minlength="2" maxlength="2" required>
-                </div>
-            </fieldset>
-
-            <fieldset>
-                <legend class="visually-hidden">Segurança e privacidade</legend>
-                <div class="auth-field">
-                    <label for="cadastro-senha">Senha</label>
-                    <input type="password" id="cadastro-senha" name="senha" autocomplete="new-password"
-                        minlength="8" required>
-                </div>
-                <div class="auth-field">
-                    <label for="cadastro-confirma-senha">Confirmar senha</label>
-                    <input type="password" id="cadastro-confirma-senha" name="confirma-senha"
-                        autocomplete="new-password" minlength="8" required>
-                </div>
-                <div class="terms-option">
-                    <input type="checkbox" id="aceite-privacidade" name="aceite-privacidade" required>
-                    <label for="aceite-privacidade">Li e aceito os Termos de Uso e a Pol&iacute;tica de Privacidade.</label>
-                </div>
-            </fieldset>
-
-            <button class="auth-submit" type="submit">Cadastrar</button>
-            </form>
-            <p class="auth-switch registration-switch">J&aacute; tem uma conta? <a href="Index.html">Entrar</a></p>
-        </section>
-    </main>
-
-    <footer class="auth-footer">
-        <p><a href="homepage.html">Início</a><span> · </span><a href="Index.html">Entrar</a></p>
-        <p>&copy; 2026 TechNova Store. Todos os direitos reservados.</p>
-    </footer>
-    <script>
-        const password = document.getElementById("cadastro-senha");
-        const confirmPassword = document.getElementById("cadastro-confirma-senha");
-
-        function validatePasswordMatch() {
-            confirmPassword.setCustomValidity(
-                confirmPassword.value === password.value ? "" : "As senhas devem ser iguais."
-            );
-        }
-
-        password.addEventListener("input", validatePasswordMatch);
-        confirmPassword.addEventListener("input", validatePasswordMatch);
-    </script>
+  <header class="auth-header">
+    <a href="homepage.html" aria-label="TechNova Store - página inicial">
+      <img src="Images/technova-store-logo.png" alt="TechNova Store">
+    </a>
+  </header>
+  <main class="auth-main">
+    <section class="auth-card registration-card" aria-labelledby="titulo-cadastro">
+      <h1 id="titulo-cadastro">Criar uma conta</h1>
+      <p class="auth-subtitle">Informe seus dados para acompanhar seus pedidos.</p>
+      <form id="form-cadastro" action="#" method="post">
+        <p id="mensagem-cadastro" data-store-message aria-live="polite"></p>
+        <div class="auth-field">
+          <label for="cadastro-nome">Nome completo</label>
+          <input type="text" id="cadastro-nome" name="nome" autocomplete="name" maxlength="120" required>
+        </div>
+        <div class="auth-field">
+          <label for="cadastro-email">E-mail</label>
+          <input type="email" id="cadastro-email" name="email" autocomplete="email" maxlength="254" required>
+        </div>
+        <div class="auth-field">
+          <label for="cadastro-senha">Senha</label>
+          <input type="password" id="cadastro-senha" name="senha" autocomplete="new-password" minlength="8" maxlength="256" required>
+        </div>
+        <div class="auth-field">
+          <label for="cadastro-confirma-senha">Confirmar senha</label>
+          <input type="password" id="cadastro-confirma-senha" name="confirma-senha" autocomplete="new-password" minlength="8" maxlength="256" required>
+        </div>
+        <div class="terms-option">
+          <input type="checkbox" id="aceite-privacidade" name="aceite-privacidade" required>
+          <label for="aceite-privacidade">Li e aceito os Termos de Uso e a Política de Privacidade.</label>
+        </div>
+        <button class="auth-submit" type="submit">Cadastrar</button>
+      </form>
+      <p class="auth-switch registration-switch">Já tem uma conta? <a href="Index.html">Entrar</a></p>
+    </section>
+  </main>
+  <footer class="auth-footer">
+    <p><a href="homepage.html">Início</a><span> · </span><a href="Index.html">Entrar</a></p>
+    <p>&copy; 2026 TechNova Store. Todos os direitos reservados.</p>
+  </footer>
+  <script>
+    const passwordField = document.getElementById("cadastro-senha");
+    const confirmField = document.getElementById("cadastro-confirma-senha");
+    function validatePasswordMatch() {
+      confirmField.setCustomValidity(confirmField.value === passwordField.value ? "" : "As senhas devem ser iguais.");
+    }
+    passwordField.addEventListener("input", validatePasswordMatch);
+    confirmField.addEventListener("input", validatePasswordMatch);
+  </script>
+  <script src="Script/store.js" defer></script>
 </body>
 </html>

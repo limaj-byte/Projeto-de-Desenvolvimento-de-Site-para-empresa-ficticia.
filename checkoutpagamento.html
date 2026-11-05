@@ -1,13 +1,14 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout - TechNova Store</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finalizar pedido | TechNova Store</title>
+  <link rel="stylesheet" href="Styles/header.css">
+  <link rel="stylesheet" href="Styles/footer.css">
 </head>
-
 <body>
+<<<<<<< Updated upstream
 
     <header>
         <h1>TechNova Store</h1>
@@ -272,5 +273,28 @@
         });
     </script>
 
+=======
+  <div id="header"></div>
+  <main>
+    <h1>Finalizar pedido</h1>
+    <p id="mensagem-checkout" data-store-message aria-live="polite"></p>
+    <section aria-labelledby="resumo-pedido-titulo">
+      <h2 id="resumo-pedido-titulo">Resumo do pedido</h2>
+      <ul id="resumo-checkout"><li>Carregando itens…</li></ul>
+      <p>Total: <strong id="total-checkout">R$ 0,00</strong></p>
+    </section>
+    <section aria-labelledby="retirada-pagamento-titulo">
+      <h2 id="retirada-pagamento-titulo">Retirada e pagamento</h2>
+      <p><strong>Retirada:</strong> exclusivamente no estabelecimento.</p>
+      <p><strong>Pagamento:</strong> presencial, no momento da retirada.</p>
+      <p>O pedido ficará pendente até a confirmação da loja. A equipe informará quando estiver pronto para retirada.</p>
+    </section>
+    <button type="button" id="confirmar-pedido">Finalizar pedido</button>
+    <p><a href="carrinho.html">Voltar ao carrinho</a></p>
+  </main>
+  <div id="footer"></div>
+  <script src="Components/components.js"></script>
+  <script src="Script/store.js" defer></script>
+>>>>>>> Stashed changes
 </body>
 </html>

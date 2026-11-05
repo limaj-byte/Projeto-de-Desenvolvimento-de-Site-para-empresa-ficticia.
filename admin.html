@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerenciar pedidos | TechNova Store</title>
+  <link rel="stylesheet" href="Styles/header.css">
+  <link rel="stylesheet" href="Styles/footer.css">
+</head>
+<body>
+  <div id="header"></div>
+  <main>
+    <h1>Gerenciamento de pedidos</h1>
+    <p><strong>Modo local de demonstração:</strong> qualquer pessoa que abra esta página neste navegador poderá alterar os status. Não use com dados reais.</p>
+    <p id="mensagem-admin" data-store-message aria-live="polite"></p>
+    <label for="filtro-status-pedido">Filtrar por status</label>
+    <select id="filtro-status-pedido">
+      <option value="">Todos os pedidos</option>
+      <option>Pendente</option>
+      <option>Confirmado</option>
+      <option>Em preparação</option>
+      <option>Pronto para retirada</option>
+      <option>Concluído</option>
+      <option>Cancelado</option>
+    </select>
+    <section id="lista-admin-pedidos" aria-live="polite"><p>Carregando pedidos…</p></section>
+  </main>
+  <div id="footer"></div>
+  <script src="Components/components.js"></script>
+  <script src="Script/store.js" defer></script>
+</body>
+</html>

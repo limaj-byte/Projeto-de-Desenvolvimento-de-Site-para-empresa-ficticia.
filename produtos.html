@@ -1,281 +1,50 @@
 <!doctype html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Produtos - TechNova Store</title>
-  </head>
-  <body>
-    <header id="header"></header>
-
-    <main>
-      <h1>Produtos</h1>
-
-      <section>
-        <h2>Pesquisar produtos</h2>
-
-        <input
-          type="text"
-          id="pesquisa"
-          placeholder="Digite o nome do produto..."
-        />
-
-        <select id="filtro-categoria">
-          <option value="">Todas as categorias</option>
-          <option value="Smartphones">Smartphones</option>
-          <option value="Áudio">Áudio</option>
-          <option value="Periféricos">Periféricos</option>
-        </select>
-
-        <select id="ordenacao">
-          <option value="">Ordenar por</option>
-          <option value="menor">Menor preço</option>
-          <option value="maior">Maior preço</option>
-          <option value="nome">Nome</option>
-        </select>
-      </section>
-
-      <hr />
-
-      <section id="lista-produtos">
-        <article class="produto" data-categoria="Smartphones">
-          <img
-            src="https://via.placeholder.com/400x400/EBF3FA/0066CC?text=Smartphone+TechPhone+X"
-            alt="Smartphone TechPhone X"
-            width="200"
-          />
-
-          <h2>Smartphone TechPhone X</h2>
-          <p>SKU: TN-SM-001</p>
-          <p>★★★★★</p>
-          <p>R$ 2.499,90</p>
-
-          <button class="adicionar-carrinho" data-id="TN-SM-001">
-            Adicionar ao Carrinho
-          </button>
-
-          <button class="mostrar-detalhes" data-id="TN-SM-001">
-            Ver detalhes
-          </button>
-        </article>
-
-        <hr />
-
-        <article class="produto" data-categoria="Áudio">
-          <img
-            src="https://via.placeholder.com/400x400/EBF3FA/0066CC?text=Fone+TechSound"
-            alt="Fone Bluetooth TechSound"
-            width="200"
-          />
-
-          <h2>Fone Bluetooth TechSound</h2>
-          <p>SKU: TN-FN-002</p>
-          <p>★★★★☆</p>
-          <p>R$ 299,90</p>
-
-          <button class="adicionar-carrinho" data-id="TN-FN-002">
-            Adicionar ao Carrinho
-          </button>
-
-          <button class="mostrar-detalhes" data-id="TN-FN-002">
-            Ver detalhes
-          </button>
-        </article>
-
-        <hr />
-
-        <article class="produto" data-categoria="Periféricos">
-          <img
-            src="https://via.placeholder.com/400x400/EBF3FA/0066CC?text=Teclado+TechKeys"
-            alt="Teclado Mecânico TechKeys"
-            width="200"
-          />
-
-          <h2>Teclado Mecânico TechKeys</h2>
-          <p>SKU: TN-TC-003</p>
-          <p>★★★★★</p>
-          <p>R$ 449,90</p>
-
-          <button class="adicionar-carrinho" data-id="TN-TC-003">
-            Adicionar ao Carrinho
-          </button>
-
-          <button class="mostrar-detalhes" data-id="TN-TC-003">
-            Ver detalhes
-          </button>
-        </article>
-      </section>
-
-      <p id="mensagem-produto"></p>
-
-      <section id="detalhes-produto" hidden>
-        <h2 id="detalhe-nome"></h2>
-        <p id="detalhe-descricao"></p>
-        <p id="detalhe-preco"></p>
-        <p id="detalhe-garantia">
-          Garantia: 12 meses (90 dias legais + 9 meses do fabricante).
-        </p>
-
-        <button id="fechar-detalhes">Fechar detalhes</button>
-      </section>
-
-      <hr />
-
-      <a href="carrinho.html">Ir para o Carrinho</a>
-    </main>
-
-    <footer id="footer"></footer>
-
-    <script src="../Components/components.js"></script>
-
-    <script>
-      const produtos = [
-        {
-          id: "TN-SM-001",
-          nome: "Smartphone TechPhone X",
-          preco: 2499.9,
-          categoria: "Smartphones",
-          imagem:
-            "https://via.placeholder.com/400x400/EBF3FA/0066CC?text=Smartphone+TechPhone+X",
-          descricao:
-            "Smartphone TechPhone X com tela de alta qualidade e ótimo desempenho.",
-        },
-        {
-          id: "TN-FN-002",
-          nome: "Fone Bluetooth TechSound",
-          preco: 299.9,
-          categoria: "Áudio",
-          imagem:
-            "https://via.placeholder.com/400x400/EBF3FA/0066CC?text=Fone+TechSound",
-          descricao:
-            "Fone Bluetooth TechSound com conexão sem fio e som de qualidade.",
-        },
-        {
-          id: "TN-TC-003",
-          nome: "Teclado Mecânico TechKeys",
-          preco: 449.9,
-          categoria: "Periféricos",
-          imagem:
-            "https://via.placeholder.com/400x400/EBF3FA/0066CC?text=Teclado+TechKeys",
-          descricao: "Teclado mecânico TechKeys, ideal para digitação e jogos.",
-        },
-      ];
-
-      const chaveCarrinho = "carrinhoTechNova";
-
-      function obterCarrinho() {
-        return JSON.parse(localStorage.getItem(chaveCarrinho)) || [];
-      }
-
-      function salvarCarrinho(carrinho) {
-        localStorage.setItem(chaveCarrinho, JSON.stringify(carrinho));
-      }
-
-      function adicionarCarrinho(id) {
-        const produto = produtos.find((item) => item.id === id);
-
-        if (!produto) {
-          return;
-        }
-
-        const carrinho = obterCarrinho();
-        const itemExistente = carrinho.find((item) => item.id === id);
-
-        if (itemExistente) {
-          itemExistente.quantidade++;
-        } else {
-          carrinho.push({
-            id: produto.id,
-            nome: produto.nome,
-            preco: produto.preco,
-            imagem: produto.imagem,
-            quantidade: 1,
-          });
-        }
-
-        salvarCarrinho(carrinho);
-
-        document.getElementById("mensagem-produto").textContent =
-          produto.nome + " foi adicionado ao carrinho!";
-      }
-
-      document.querySelectorAll(".adicionar-carrinho").forEach((botao) => {
-        botao.addEventListener("click", function () {
-          adicionarCarrinho(this.dataset.id);
-        });
-      });
-
-      document.querySelectorAll(".mostrar-detalhes").forEach((botao) => {
-        botao.addEventListener("click", function () {
-          const produto = produtos.find((item) => item.id === this.dataset.id);
-
-          if (produto) {
-            document.getElementById("detalhe-nome").textContent = produto.nome;
-
-            document.getElementById("detalhe-descricao").textContent =
-              produto.descricao;
-
-            document.getElementById("detalhe-preco").textContent =
-              "Preço: R$ " + produto.preco.toFixed(2).replace(".", ",");
-
-            document.getElementById("detalhes-produto").hidden = false;
-          }
-        });
-      });
-
-      document
-        .getElementById("fechar-detalhes")
-        .addEventListener("click", function () {
-          document.getElementById("detalhes-produto").hidden = true;
-        });
-
-      function filtrarProdutos() {
-        const pesquisa = document
-          .getElementById("pesquisa")
-          .value.toLowerCase();
-
-        const categoria = document.getElementById("filtro-categoria").value;
-
-        const ordenacao = document.getElementById("ordenacao").value;
-
-        let produtosFiltrados = produtos.filter((produto) => {
-          const nomeCombina = produto.nome.toLowerCase().includes(pesquisa);
-          const categoriaCombina =
-            categoria === "" || produto.categoria === categoria;
-
-          return nomeCombina && categoriaCombina;
-        });
-
-        if (ordenacao === "menor") {
-          produtosFiltrados.sort((a, b) => a.preco - b.preco);
-        } else if (ordenacao === "maior") {
-          produtosFiltrados.sort((a, b) => b.preco - a.preco);
-        } else if (ordenacao === "nome") {
-          produtosFiltrados.sort((a, b) => a.nome.localeCompare(b.nome));
-        }
-
-        document.querySelectorAll(".produto").forEach((elemento) => {
-          const id = elemento.querySelector(".adicionar-carrinho").dataset.id;
-
-          const encontrado = produtosFiltrados.some(
-            (produto) => produto.id === id,
-          );
-
-          elemento.hidden = !encontrado;
-        });
-      }
-
-      document
-        .getElementById("pesquisa")
-        .addEventListener("input", filtrarProdutos);
-
-      document
-        .getElementById("filtro-categoria")
-        .addEventListener("change", filtrarProdutos);
-
-      document
-        .getElementById("ordenacao")
-        .addEventListener("change", filtrarProdutos);
-    </script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Produtos | TechNova Store</title>
+  <link rel="stylesheet" href="Styles/header.css">
+  <link rel="stylesheet" href="Styles/footer.css">
+</head>
+<body>
+  <div id="header"></div>
+  <main>
+    <h1>Produtos</h1>
+    <section aria-labelledby="filtros-produtos">
+      <h2 id="filtros-produtos">Pesquisar e filtrar</h2>
+      <label for="pesquisa">Nome do produto</label>
+      <input type="search" id="pesquisa" placeholder="Digite o nome do produto...">
+      <label for="filtro-categoria">Categoria</label>
+      <select id="filtro-categoria">
+        <option value="">Todas as categorias</option>
+        <option value="Smartphones">Smartphones</option>
+        <option value="Áudio">Áudio</option>
+        <option value="Periféricos">Periféricos</option>
+      </select>
+      <label for="ordenacao">Ordenar por</label>
+      <select id="ordenacao">
+        <option value="">Relevância</option>
+        <option value="menor">Menor preço</option>
+        <option value="maior">Maior preço</option>
+        <option value="nome">Nome</option>
+      </select>
+    </section>
+    <p id="mensagem-produto" data-store-message aria-live="polite"></p>
+    <section id="lista-produtos" aria-label="Produtos disponíveis">
+      <p>Carregando produtos…</p>
+    </section>
+    <section id="detalhes-produto" hidden aria-live="polite">
+      <h2 id="detalhe-nome"></h2>
+      <p id="detalhe-descricao"></p>
+      <p id="detalhe-preco"></p>
+      <p>Garantia: 12 meses (90 dias legais + 9 meses do fabricante).</p>
+      <button type="button" id="fechar-detalhes">Fechar detalhes</button>
+    </section>
+    <p><a href="carrinho.html">Ir para o carrinho</a></p>
+  </main>
+  <div id="footer"></div>
+  <script src="Components/components.js"></script>
+  <script src="Script/store.js" defer></script>
+</body>
 </html>
