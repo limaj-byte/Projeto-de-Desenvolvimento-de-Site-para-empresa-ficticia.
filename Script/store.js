@@ -238,10 +238,12 @@
   function initCheckout() {
     const button = document.getElementById("confirmar-pedido");
     if (!button) return;
+    const form = document.getElementById("checkout-form");
     if (!currentUser || currentUser.role !== "customer") {
       location.replace(`Index.html?next=${encodeURIComponent("checkoutpagamento.html")}`);
       return;
     }
+    document.getElementById("entrega-nome").value = currentUser.name;
     const cart = readCart();
     const rows = currentOrderRows(cart, loadDb());
     const list = document.getElementById("resumo-checkout");
@@ -250,12 +252,51 @@
       button.disabled = true;
       return;
     }
-    list.innerHTML = rows.map(({ item, product }) => `<li>${escapeHtml(product.name)} · ${item.quantity} × ${formatMoney(product.priceCents)} = ${formatMoney(item.quantity * product.priceCents)}</li>`).join("");
-    document.getElementById("total-checkout").textContent = formatMoney(rows.reduce((sum, row) => sum + row.item.quantity * row.product.priceCents, 0));
-    button.addEventListener("click", async () => {
+    const subtotal = rows.reduce((sum, row) => sum + row.item.quantity * row.product.priceCents, 0);
+    list.innerHTML = rows.map(({ item, product }) => `
+      <li class="order-item">
+        <img src="${escapeHtml(product.image)}" alt="">
+        <div>
+          <p class="order-item-name">${escapeHtml(product.name)}</p>
+          <p class="order-item-detail">${item.quantity} × ${formatMoney(product.priceCents)}</p>
+        </div>
+      </li>`).join("");
+    document.getElementById("subtotal-checkout").textContent = formatMoney(subtotal);
+    document.getElementById("total-checkout").textContent = formatMoney(subtotal);
+
+    const paymentFields = document.querySelectorAll('[data-payment-details="cartao"] input');
+    const updatePaymentDetails = () => {
+      const selectedPayment = form.querySelector('input[name="payment"]:checked').value;
+      document.querySelectorAll("[data-payment-details]").forEach((details) => {
+        details.hidden = details.dataset.paymentDetails !== selectedPayment;
+      });
+      paymentFields.forEach((field) => { field.required = selectedPayment === "cartao"; });
+    };
+    form.querySelectorAll('input[name="payment"]').forEach((option) => option.addEventListener("change", updatePaymentDetails));
+    updatePaymentDetails();
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
       button.disabled = true;
-      button.textContent = "Registrando pedido…";
+      button.textContent = "Registrando pedido...";
       try {
+        const fields = new FormData(form);
+        const address = {
+          name: String(fields.get("name")).trim(),
+          phone: String(fields.get("phone")).trim(),
+          street: String(fields.get("street")).trim(),
+          neighborhood: String(fields.get("neighborhood")).trim(),
+          city: String(fields.get("city")).trim(),
+          state: String(fields.get("state")).trim().toUpperCase(),
+          postalCode: String(fields.get("postalCode")).trim(),
+        };
+        const paymentMethods = {
+          cartao: "Cartão de crédito (simulado)",
+          pix: "Pix (simulado)",
+          boleto: "Boleto bancário (simulado)",
+        };
+        const paymentMethod = paymentMethods[fields.get("payment")];
+        if (!paymentMethod) throw new Error("Selecione uma forma de pagamento válida.");
         const create = () => {
           const db = loadDb();
           const signature = JSON.stringify(readCart().slice().sort((a, b) => a.id.localeCompare(b.id)));
@@ -281,8 +322,8 @@
             id: `TN-${new Date().toISOString().slice(0, 10).replaceAll("-", "")}-${crypto.randomUUID().slice(0, 6).toUpperCase()}`,
             userId: currentUser.id, createdAt: new Date().toISOString(),
             totalCents: items.reduce((sum, item) => sum + item.subtotalCents, 0),
-            status: "Pendente", pickupMethod: "Retirada no estabelecimento",
-            paymentMethod: "Pagamento presencial na retirada", idempotencyKey: key, items,
+            status: "Pendente", pickupMethod: "Entrega no endereço informado",
+            paymentMethod, deliveryAddress: address, idempotencyKey: key, items,
           };
           requested.forEach(({ item, product }) => { product.stock -= item.quantity; });
           db.orders.push(order);
@@ -328,8 +369,48 @@
     if (!target) return;
     const id = new URLSearchParams(location.search).get("pedido");
     const order = loadDb().orders.find((entry) => entry.id === id && entry.userId === currentUser?.id);
-    if (!order) { target.textContent = "Não encontramos esse pedido na sua conta."; return; }
-    target.innerHTML = `<h1>Pedido registrado</h1><p>Número do pedido: <strong>${escapeHtml(order.id)}</strong></p><p>Status: ${escapeHtml(order.status)}</p><p>Total: ${formatMoney(order.totalCents)}</p><ul>${order.items.map((item) => `<li>${escapeHtml(item.name)} · ${item.quantity} unidade(s)</li>`).join("")}</ul><p>Retire no estabelecimento e faça o pagamento presencialmente.</p>`;
+    if (!order) {
+      target.innerHTML = '<section class="confirmation-card"><h1>Pedido não encontrado</h1><p>Não encontramos esse pedido na sua conta.</p><a class="back-to-cart" href="profile.html">Acompanhar meus pedidos</a></section>';
+      return;
+    }
+    const address = order.deliveryAddress;
+    const addressText = address
+      ? `${address.street}, ${address.neighborhood} · ${address.city}/${address.state} · CEP ${address.postalCode}`
+      : "Endereço de entrega não informado";
+    target.innerHTML = `
+      <section class="confirmation-card">
+        <div class="confirmation-icon" aria-hidden="true">✓</div>
+        <h1>Pedido confirmado!</h1>
+        <p class="confirmation-lead">Seu pedido foi registrado com sucesso e já está sendo processado.</p>
+        <dl class="confirmation-details">
+          <div><dt>Número do pedido</dt><dd>${escapeHtml(order.id)}</dd></div>
+          <div><dt>Data do pedido</dt><dd>${new Date(order.createdAt).toLocaleString("pt-BR")}</dd></div>
+          <div><dt>Forma de pagamento</dt><dd>${escapeHtml(order.paymentMethod)}</dd></div>
+        </dl>
+        <p class="confirmation-banner">Enviaremos atualizações sobre o andamento do seu pedido. Este é um ambiente de demonstração; nenhum pagamento foi processado.</p>
+        <div class="confirmation-actions">
+          <a class="primary-action" href="profile.html">Acompanhar meu pedido</a>
+          <a class="secondary-action" href="produtos.html">Voltar para a loja</a>
+        </div>
+        <p class="confirmation-address"><strong>Endereço de entrega:</strong> ${escapeHtml(addressText)}</p>
+      </section>
+      <aside class="checkout-card order-summary confirmation-summary" aria-labelledby="resumo-confirmado-titulo">
+        <h2 id="resumo-confirmado-titulo">Resumo do pedido</h2>
+        <ul class="order-items">${order.items.map((item) => `
+          <li class="order-item">
+            <img src="${escapeHtml(item.image)}" alt="">
+            <div>
+              <p class="order-item-name">${escapeHtml(item.name)}</p>
+              <p class="order-item-detail">${item.quantity} × ${formatMoney(item.unitPriceCents)}</p>
+            </div>
+          </li>`).join("")}</ul>
+        <dl class="summary-totals">
+          <div><dt>Subtotal</dt><dd>${formatMoney(order.totalCents)}</dd></div>
+          <div><dt>Entrega</dt><dd>Grátis</dd></div>
+          <div class="summary-total"><dt>Total</dt><dd>${formatMoney(order.totalCents)}</dd></div>
+        </dl>
+        <div class="delivery-estimate"><strong>Previsão de entrega</strong><p>De 5 a 8 dias úteis.</p></div>
+      </aside>`;
   }
 
   function initAdmin() {

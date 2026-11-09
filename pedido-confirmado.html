@@ -3,15 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pedido registrado | TechNova Store</title>
+  <meta name="description" content="Acompanhe os detalhes do seu pedido na TechNova Store.">
+  <title>Pedido confirmado | TechNova Store</title>
   <link rel="stylesheet" href="Styles/header.css">
   <link rel="stylesheet" href="Styles/footer.css">
+  <link rel="stylesheet" href="Styles/checkout.css">
 </head>
-<body>
+<body class="confirmation-page">
   <div id="header"></div>
-  <main id="confirmacao-pedido" aria-live="polite"><p>Carregando confirmação…</p></main>
-  <p><a href="profile.html">Acompanhar meus pedidos</a></p>
-  <p><a href="produtos.html">Voltar à loja</a></p>
+  <main class="confirmation-main">
+    <p class="breadcrumb"><a href="carrinho.html">Checkout</a> / Confirmação do pedido</p>
+    <div id="confirmacao-pedido" class="confirmation-layout" aria-live="polite">
+      <section class="confirmation-card"><p>Carregando confirmação…</p></section>
+    </div>
+  </main>
   <div id="footer"></div>
   <script src="Components/components.js"></script>
   <script src="Script/store.js" defer></script>

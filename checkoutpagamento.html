@@ -3,298 +3,131 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Finalizar pedido | TechNova Store</title>
+  <meta name="description" content="Revise seu pedido e informe os dados de entrega e pagamento.">
+  <title>Finalizar compra | TechNova Store</title>
   <link rel="stylesheet" href="Styles/header.css">
   <link rel="stylesheet" href="Styles/footer.css">
+  <link rel="stylesheet" href="Styles/checkout.css">
 </head>
-<body>
-<<<<<<< Updated upstream
-
-    <header>
-        <h1>TechNova Store</h1>
-        <h2>Finalizar Compra</h2>
-        <hr>
-    </header>
-
-    <main>
-
-        <!-- Endereço de entrega -->
-        <section id="secao-endereco">
-            <h2>1. Endereço de Entrega</h2>
-
-            <div id="dados-endereco">
-                <p><strong>Nome:</strong> <span id="nome-exibicao">Gustavo Marques Costa</span></p>
-                <p><strong>Endereço:</strong> <span id="endereco-exibicao">Rua das Flores, 123</span></p>
-                <p><strong>Cidade:</strong> <span id="cidade-exibicao">Ji-Paraná - RO</span></p>
-                <p><strong>CEP:</strong> <span id="cep-exibicao">76900-000</span></p>
-                <button type="button" id="alterar-endereco">Alterar Endereço</button>
-            </div>
-
-            <form id="form-endereco" hidden>
-                <p>
-                    <label for="nome">Nome:</label><br>
-                    <input type="text" id="nome" value="Gustavo Marques Costa" required>
-                </p>
-                <p>
-                    <label for="endereco">Endereço:</label><br>
-                    <input type="text" id="endereco" value="Rua das Flores, 123" required>
-                </p>
-                <p>
-                    <label for="cidade">Cidade/UF:</label><br>
-                    <input type="text" id="cidade" value="Ji-Paraná - RO" required>
-                </p>
-                <p>
-                    <label for="cep">CEP:</label><br>
-                    <input type="text" id="cep" value="76900-000" inputmode="numeric" maxlength="9" required>
-                </p>
-                <button type="submit">Salvar Endereço</button>
-                <button type="button" id="cancelar-alteracao">Cancelar</button>
-            </form>
-        </section>
-
-        <hr>
-
-        <!-- Tipo de entrega -->
-        <section>
-            <h2>2. Tipo de Entrega</h2>
-
-            <form id="form-entrega">
-                <p>
-                    <label for="tipo-entrega">Como você deseja receber seu pedido?</label><br>
-                    <select id="tipo-entrega" name="tipo-entrega" required>
-                        <option value="" disabled>Selecione uma opção</option>
-                        <option value="economico">Entrega econômica — R$ 15,00 (5 a 8 dias úteis)</option>
-                        <option value="expresso">Entrega expressa — R$ 30,00 (2 a 3 dias úteis)</option>
-                        <option value="gratis">Entrega grátis — 10 a 15 dias úteis</option>
-                        <option value="retirada" selected>Retirar na loja — grátis</option>
-                    </select>
-                </p>
-
-            </form>
-
-            <aside id="informacoes-retirada" aria-labelledby="titulo-retirada">
-                <h3 id="titulo-retirada">Retire na loja</h3>
-                <p><strong>TechNova Store — Unidade Centro</strong></p>
-                <p>Av. Brasil, 850, Centro — Ji-Paraná, RO</p>
-                <p><strong>Disponível para retirada:</strong> hoje, em até 2 horas após a confirmação do pagamento.</p>
-                <p><strong>Horário:</strong> segunda a sábado, das 9h às 18h.</p>
-                <p>Apresente o número do pedido e um documento com foto no balcão.</p>
-            </aside>
-        </section>
-
-        <hr>
-
-        <!-- Forma de pagamento -->
-        <section>
-            <h2>3. Forma de Pagamento</h2>
-
-            <form>
-                <fieldset id="selecao-pagamento">
-                    <legend>Escolha como deseja pagar</legend>
-
-                    <p>
-                        <label for="pagamento-pix">
-                            <input type="radio" id="pagamento-pix" name="pagamento" value="pix" checked aria-describedby="descricao-pix" aria-controls="opcao-pix">
-                            <strong>Pix</strong> — pagamento instantâneo
-                        </label>
-                    </p>
-
-                    <p>
-                        <label for="pagamento-cartao">
-                            <input type="radio" id="pagamento-cartao" name="pagamento" value="cartao" aria-describedby="descricao-cartao" aria-controls="opcao-cartao">
-                            <strong>Cartão de crédito</strong> — parcele sua compra sem juros
-                        </label>
-                    </p>
-
-                    <p>
-                        <label for="pagamento-boleto">
-                            <input type="radio" id="pagamento-boleto" name="pagamento" value="boleto" aria-describedby="descricao-boleto" aria-controls="opcao-boleto">
-                            <strong>Boleto bancário</strong> — vencimento em até 3 dias úteis
-                        </label>
-                    </p>
-                </fieldset>
-
-                <br>
-
-                <fieldset id="opcao-pix">
-                    <legend>Pix</legend>
-
-                    <p id="descricao-pix">Escaneie o QR Code abaixo para simular o pagamento:</p>
-
-                    <img
-                        src="https://commons.wikimedia.org/wiki/Special:FilePath/Rickrolling_QR_code.png"
-                        alt="QR Code Pix fictício para demonstração"
-                        width="200"
-                        height="200">
-                    <p><small><a href="https://commons.wikimedia.org/wiki/File:Rickrolling_QR_code.png">Vysulo</a>, domínio público, via Wikimedia Commons.</small></p>
-
-                    <p><strong>Chave Pix fictícia:</strong> technova@example.com</p>
-                    <p><small>Ambiente de demonstração: nenhum pagamento será processado.</small></p>
-
-                    <button type="button">Copiar Chave Pix</button>
-                </fieldset>
-
-                <br>
-
-                <fieldset id="opcao-cartao" hidden>
-                    <legend>Cartão de Crédito</legend>
-
-                    <p id="descricao-cartao">Use um cartão de crédito para escolher o número de parcelas.</p>
-
-                    <p>
-                        <label for="titular">Nome do titular:</label><br>
-                        <input type="text" id="titular"
-                               placeholder="Nome no cartão">
-                    </p>
-
-                    <p>
-                        <label for="numero">Número do cartão:</label><br>
-                        <input type="text" id="numero"
-                               placeholder="0000 0000 0000 0000"
-                               maxlength="19">
-                    </p>
-
-                    <p>
-                        <label for="validade">Validade:</label><br>
-                        <input type="text" id="validade"
-                               placeholder="MM/AA" maxlength="5">
-                    </p>
-
-                    <p>
-                        <label for="cvv">CVV:</label><br>
-                        <input type="text" id="cvv"
-                               placeholder="123" maxlength="4">
-                    </p>
-
-                    <p>
-                        <label for="parcelas">Parcelamento:</label><br>
-                        <select id="parcelas" name="parcelas">
-                            <option value="1">1x de R$ 500,00 sem juros</option>
-                            <option value="2">2x de R$ 250,00 sem juros</option>
-                            <option value="3">3x de R$ 166,67 sem juros</option>
-                            <option value="4">4x de R$ 125,00 sem juros</option>
-                            <option value="5">5x de R$ 100,00 sem juros</option>
-                        </select>
-                    </p>
-                </fieldset>
-
-                <br>
-
-                <fieldset id="opcao-boleto" hidden>
-                    <legend>Boleto Bancário</legend>
-
-                    <p id="descricao-boleto">
-                        O boleto será gerado após a finalização do pedido.
-                    </p>
-
-                    <p><strong>Linha digitável fictícia:</strong></p>
-                    <p>00000.00000 00000.000000 00000.000000 0 00000000000000</p>
-                </fieldset>
-            </form>
-        </section>
-
-        <hr>
-
-        <!-- Resumo do pedido -->
-        <section>
-            <h2>4. Resumo do Pedido</h2>
-
-            <p>Notebook Intel Core i5 - R$ 2.899,90</p>
-            <p>Headset Gamer - R$ 249,90</p>
-            <p>Subtotal: R$ 3.149,80</p>
-            <p>Frete: A calcular</p>
-
-            <h3>Total: R$ 3.149,80 + frete</h3>
-        </section>
-
-        <hr>
-
-        <!-- Finalização -->
-        <section>
-            <h2>5. Finalizar Pedido</h2>
-
-            <p>
-                Confira os dados de entrega e pagamento antes de
-                concluir sua compra.
-            </p>
-
-            <button type="button">Finalizar Pedido</button>
-
-            <p>
-                <a href="homepage.html">Voltar para a página inicial</a>
-            </p>
-        </section>
-
-    </main>
-
-    <footer>
-        <hr>
-        <p>&copy; 2026 TechNova Store - Todos os direitos reservados.</p>
-        <p>Ambiente de demonstração. Pagamentos fictícios.</p>
-    </footer>
-
-    <script>
-        const dadosEndereco = document.getElementById('dados-endereco');
-        const formularioEndereco = document.getElementById('form-endereco');
-
-        document.getElementById('alterar-endereco').addEventListener('click', () => {
-            dadosEndereco.hidden = true;
-            formularioEndereco.hidden = false;
-            document.getElementById('nome').focus();
-        });
-
-        document.getElementById('cancelar-alteracao').addEventListener('click', () => {
-            formularioEndereco.hidden = true;
-            dadosEndereco.hidden = false;
-        });
-
-        formularioEndereco.addEventListener('submit', (evento) => {
-            evento.preventDefault();
-            document.getElementById('nome-exibicao').textContent = document.getElementById('nome').value;
-            document.getElementById('endereco-exibicao').textContent = document.getElementById('endereco').value;
-            document.getElementById('cidade-exibicao').textContent = document.getElementById('cidade').value;
-            document.getElementById('cep-exibicao').textContent = document.getElementById('cep').value;
-            formularioEndereco.hidden = true;
-            dadosEndereco.hidden = false;
-        });
-
-        const opcoesPagamento = {
-            pix: document.getElementById('opcao-pix'),
-            cartao: document.getElementById('opcao-cartao'),
-            boleto: document.getElementById('opcao-boleto')
-        };
-
-        document.querySelectorAll('input[name="pagamento"]').forEach((opcao) => {
-            opcao.addEventListener('change', () => {
-                Object.entries(opcoesPagamento).forEach(([forma, painel]) => {
-                    painel.hidden = forma !== opcao.value;
-                });
-            });
-        });
-    </script>
-
-=======
+<body class="checkout-page">
   <div id="header"></div>
-  <main>
-    <h1>Finalizar pedido</h1>
-    <p id="mensagem-checkout" data-store-message aria-live="polite"></p>
-    <section aria-labelledby="resumo-pedido-titulo">
-      <h2 id="resumo-pedido-titulo">Resumo do pedido</h2>
-      <ul id="resumo-checkout"><li>Carregando itens…</li></ul>
-      <p>Total: <strong id="total-checkout">R$ 0,00</strong></p>
-    </section>
-    <section aria-labelledby="retirada-pagamento-titulo">
-      <h2 id="retirada-pagamento-titulo">Retirada e pagamento</h2>
-      <p><strong>Retirada:</strong> exclusivamente no estabelecimento.</p>
-      <p><strong>Pagamento:</strong> presencial, no momento da retirada.</p>
-      <p>O pedido ficará pendente até a confirmação da loja. A equipe informará quando estiver pronto para retirada.</p>
-    </section>
-    <button type="button" id="confirmar-pedido">Finalizar pedido</button>
-    <p><a href="carrinho.html">Voltar ao carrinho</a></p>
+  <main class="checkout-main">
+    <div class="checkout-heading">
+      <p class="breadcrumb"><a href="carrinho.html">Carrinho</a> / Checkout</p>
+      <h1>Finalizar compra</h1>
+      <p>Confira seus dados, escolha a forma de pagamento e conclua seu pedido de forma segura.</p>
+    </div>
+
+    <p id="mensagem-checkout" class="store-message" data-store-message aria-live="polite"></p>
+
+    <form id="checkout-form" class="checkout-layout">
+      <div class="checkout-details">
+        <section class="checkout-card" aria-labelledby="entrega-titulo">
+          <h2 id="entrega-titulo"><span class="step-number">1</span> Dados de entrega</h2>
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="entrega-nome">Nome completo</label>
+              <input id="entrega-nome" name="name" autocomplete="name" required minlength="2">
+            </div>
+            <div class="form-field">
+              <label for="entrega-telefone">Telefone</label>
+              <input id="entrega-telefone" name="phone" type="tel" autocomplete="tel" placeholder="(00) 00000-0000" required>
+            </div>
+            <div class="form-field form-field-wide">
+              <label for="entrega-endereco">Endereço</label>
+              <input id="entrega-endereco" name="street" autocomplete="street-address" placeholder="Rua, número e complemento" required>
+            </div>
+            <div class="form-field">
+              <label for="entrega-bairro">Bairro</label>
+              <input id="entrega-bairro" name="neighborhood" required>
+            </div>
+            <div class="form-field">
+              <label for="entrega-cidade">Cidade</label>
+              <input id="entrega-cidade" name="city" autocomplete="address-level2" required>
+            </div>
+            <div class="form-field">
+              <label for="entrega-estado">Estado</label>
+              <input id="entrega-estado" name="state" autocomplete="address-level1" maxlength="2" placeholder="UF" required>
+            </div>
+            <div class="form-field">
+              <label for="entrega-cep">CEP</label>
+              <input id="entrega-cep" name="postalCode" autocomplete="postal-code" inputmode="numeric" placeholder="00000-000" maxlength="9" required>
+            </div>
+          </div>
+        </section>
+
+        <section class="checkout-card" aria-labelledby="pagamento-titulo">
+          <h2 id="pagamento-titulo"><span class="step-number">2</span> Forma de pagamento</h2>
+          <fieldset class="payment-options">
+            <legend class="visually-hidden">Escolha como deseja pagar</legend>
+            <label class="payment-option">
+              <input type="radio" name="payment" value="cartao" checked>
+              <span><strong>Cartão de crédito</strong><small>Pagamento simulado</small></span>
+            </label>
+            <label class="payment-option">
+              <input type="radio" name="payment" value="pix">
+              <span><strong>Pix</strong><small>Pagamento simulado</small></span>
+            </label>
+            <label class="payment-option">
+              <input type="radio" name="payment" value="boleto">
+              <span><strong>Boleto bancário</strong><small>Vencimento em 3 dias úteis</small></span>
+            </label>
+          </fieldset>
+
+          <div class="payment-details" data-payment-details="cartao">
+            <div class="form-grid">
+              <div class="form-field form-field-wide">
+                <label for="cartao-titular">Nome no cartão</label>
+                <input id="cartao-titular" name="cardholder" autocomplete="cc-name" placeholder="Nome do titular">
+              </div>
+              <div class="form-field form-field-wide">
+                <label for="cartao-numero">Número do cartão</label>
+                <input id="cartao-numero" name="cardNumber" inputmode="numeric" autocomplete="cc-number" placeholder="0000 0000 0000 0000" maxlength="19">
+              </div>
+              <div class="form-field">
+                <label for="cartao-validade">Validade</label>
+                <input id="cartao-validade" name="cardExpiry" autocomplete="cc-exp" placeholder="MM/AA" maxlength="5">
+              </div>
+              <div class="form-field">
+                <label for="cartao-cvv">CVV</label>
+                <input id="cartao-cvv" name="cardCvv" inputmode="numeric" autocomplete="cc-csc" placeholder="123" maxlength="4">
+              </div>
+            </div>
+            <p class="simulation-note">Ambiente de demonstração: nenhum pagamento será processado e os dados do cartão não serão armazenados.</p>
+          </div>
+          <div class="payment-details payment-notice" data-payment-details="pix" hidden>
+            O pedido será registrado como pagamento via Pix. Nenhuma cobrança será realizada neste ambiente de demonstração.
+          </div>
+          <div class="payment-details payment-notice" data-payment-details="boleto" hidden>
+            O pedido será registrado como pagamento via boleto. Nenhuma cobrança será realizada neste ambiente de demonstração.
+          </div>
+        </section>
+
+        <section class="checkout-card review-card" aria-labelledby="revisao-titulo">
+          <h2 id="revisao-titulo"><span class="step-number">3</span> Revisar pedido</h2>
+          <p>Ao finalizar, você confirma os dados de entrega e a forma de pagamento escolhida.</p>
+          <button class="checkout-submit" type="submit" id="confirmar-pedido">Finalizar compra</button>
+          <a class="back-to-cart" href="carrinho.html">Voltar ao carrinho</a>
+        </section>
+      </div>
+
+      <aside class="order-summary checkout-card" aria-labelledby="resumo-titulo">
+        <h2 id="resumo-titulo">Resumo do pedido</h2>
+        <ul id="resumo-checkout" class="order-items"><li>Carregando itens…</li></ul>
+        <dl class="summary-totals">
+          <div><dt>Subtotal</dt><dd id="subtotal-checkout">R$ 0,00</dd></div>
+          <div><dt>Entrega</dt><dd>Grátis</dd></div>
+          <div class="summary-total"><dt>Total</dt><dd id="total-checkout">R$ 0,00</dd></div>
+        </dl>
+        <div class="delivery-estimate">
+          <strong>Previsão de entrega</strong>
+          <p>De 5 a 8 dias úteis após a confirmação do pedido.</p>
+        </div>
+      </aside>
+    </form>
   </main>
   <div id="footer"></div>
   <script src="Components/components.js"></script>
   <script src="Script/store.js" defer></script>
->>>>>>> Stashed changes
 </body>
 </html>
