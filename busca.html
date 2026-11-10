@@ -1,148 +1,434 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Resultados de busca de produtos na TechNova Store.">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Resultados de busca de produtos na TechNova Store."
+    />
     <title>Resultados da busca | TechNova Store</title>
-</head>
-<body>
+  </head>
+
+  <body>
     <header>
-        <p><a href="homepage.html">TechNova Store</a></p>
+      <p><a href="homepage.html">TechNova Store</a></p>
 
-        <form action="busca.html" method="get" role="search">
-            <label for="termo-busca">Buscar produtos</label><br>
-            <input type="search" id="termo-busca" name="q" value="notebook"
-                placeholder="O que você está procurando?">
-            <button type="submit">Buscar</button>
-        </form>
+      <form action="busca.html" method="get" role="search">
+        <label for="termo-busca">Buscar produtos</label><br />
+        <input
+          type="search"
+          id="termo-busca"
+          name="q"
+          placeholder="O que você está procurando?"
+        />
+        <button type="submit">Buscar</button>
+      </form>
 
-        <nav aria-label="Navegação principal">
-            <a href="homepage.html">Início</a>
-            <a href="produtos.html">Produtos</a>
-            <a href="profile.html">Minha conta</a>
-            <a href="carrinho.html">Carrinho</a>
-        </nav>
+      <nav aria-label="Navegação principal">
+        <a href="homepage.html">Início</a>
+        <a href="catalogo.html">Produtos</a>
+        <a href="profile.html">Minha conta</a>
+        <a href="carrinho.html">Carrinho</a>
+      </nav>
     </header>
 
     <main>
-        <nav aria-label="Caminho da página">
-            <a href="homepage.html">Início</a> &gt; Busca
-        </nav>
+      <nav aria-label="Caminho da página">
+        <a href="homepage.html">Início</a> &gt; Busca
+      </nav>
 
-        <section aria-labelledby="titulo-resultados">
-            <h1 id="titulo-resultados">Resultados da busca</h1>
-            <p>Resultados para <strong>“notebook”</strong></p>
-            <p>Encontramos 4 produtos</p>
-        </section>
+      <section aria-labelledby="titulo-resultados">
+        <h1 id="titulo-resultados">Resultados da busca</h1>
+        <p id="texto-busca"></p>
+        <p id="quantidade-resultados"></p>
+      </section>
 
-        <section aria-labelledby="titulo-filtros">
-            <h2 id="titulo-filtros">Filtrar resultados</h2>
-            <form action="busca.html" method="get">
-                <input type="hidden" name="q" value="notebook">
+      <section aria-labelledby="titulo-filtros">
+        <h2 id="titulo-filtros">Filtrar resultados</h2>
 
-                <fieldset>
-                    <legend>Categoria</legend>
-                    <p><input type="checkbox" id="categoria-notebook" name="categoria" value="notebooks">
-                        <label for="categoria-notebook">Notebooks</label></p>
-                    <p><input type="checkbox" id="categoria-acessorios" name="categoria" value="acessorios">
-                        <label for="categoria-acessorios">Acessórios</label></p>
-                </fieldset>
+        <form action="busca.html" method="get" id="form-filtros">
+          <label for="pesquisa-filtro">Pesquisar produto</label>
+          <input
+            type="search"
+            id="pesquisa-filtro"
+            name="q"
+            placeholder="Digite o produto..."
+          />
 
-                <fieldset>
-                    <legend>Faixa de preço</legend>
-                    <p><input type="radio" id="preco-ate-2000" name="preco" value="ate-2000">
-                        <label for="preco-ate-2000">Até R$ 2.000</label></p>
-                    <p><input type="radio" id="preco-2000-3000" name="preco" value="2000-3000">
-                        <label for="preco-2000-3000">R$ 2.000 a R$ 3.000</label></p>
-                    <p><input type="radio" id="preco-acima-3000" name="preco" value="acima-3000">
-                        <label for="preco-acima-3000">Acima de R$ 3.000</label></p>
-                </fieldset>
+          <fieldset>
+            <legend>Categoria</legend>
 
-                <fieldset>
-                    <legend>Marca</legend>
-                    <p><input type="checkbox" id="marca-technova" name="marca" value="technova">
-                        <label for="marca-technova">TechNova</label></p>
-                    <p><input type="checkbox" id="marca-lenovo" name="marca" value="lenovo">
-                        <label for="marca-lenovo">Lenovo</label></p>
-                    <p><input type="checkbox" id="marca-dell" name="marca" value="dell">
-                        <label for="marca-dell">Dell</label></p>
-                </fieldset>
+            <p>
+              <input
+                type="checkbox"
+                id="categoria-smartphones"
+                name="categoria"
+                value="Smartphones"
+              />
+              <label for="categoria-smartphones">Smartphones</label>
+            </p>
 
-                <button type="submit">Aplicar filtros</button>
-            </form>
-        </section>
+            <p>
+              <input
+                type="checkbox"
+                id="categoria-audio"
+                name="categoria"
+                value="Áudio"
+              />
+              <label for="categoria-audio">Áudio</label>
+            </p>
 
-        <section aria-labelledby="titulo-produtos">
-            <h2 id="titulo-produtos">Produtos encontrados</h2>
+            <p>
+              <input
+                type="checkbox"
+                id="categoria-perifericos"
+                name="categoria"
+                value="Periféricos"
+              />
+              <label for="categoria-perifericos">Periféricos</label>
+            </p>
+          </fieldset>
 
-            <form action="busca.html" method="get">
-                <input type="hidden" name="q" value="notebook">
-                <label for="ordenacao">Ordenar por:</label>
-                <select id="ordenacao" name="ordenacao">
-                    <option value="relevancia">Mais relevantes</option>
-                    <option value="menor-preco">Menor preço</option>
-                    <option value="maior-preco">Maior preço</option>
-                    <option value="mais-vendidos">Mais vendidos</option>
-                </select>
-                <button type="submit">Ordenar</button>
-            </form>
+          <fieldset>
+            <legend>Faixa de preço</legend>
 
-            <article>
-                <img src="https://placehold.co/300x200?text=Notebook+TechBook+14"
-                    alt="Notebook TechBook 14" width="300" height="200">
-                <p>Notebook</p>
-                <h3><a href="produtos.html">Notebook TechBook 14</a></h3>
-                <p>Avaliação: ★★★★★ (128 avaliações)</p>
-                <p><del>R$ 3.299,90</del></p>
-                <p><strong>R$ 2.899,90</strong></p>
-                <p>ou 10x de R$ 289,99 sem juros</p>
-                <a href="carrinho.html">Adicionar ao carrinho</a>
-            </article>
+            <p>
+              <input
+                type="radio"
+                id="preco-todos"
+                name="preco"
+                value=""
+                checked
+              />
+              <label for="preco-todos">Todos os preços</label>
+            </p>
 
-            <article>
-                <img src="https://placehold.co/300x200?text=Notebook+Lenovo+IdeaPad"
-                    alt="Notebook Lenovo IdeaPad" width="300" height="200">
-                <p>Notebook</p>
-                <h3><a href="produtos.html">Notebook Lenovo IdeaPad 3</a></h3>
-                <p>Avaliação: ★★★★☆ (96 avaliações)</p>
-                <p><strong>R$ 2.649,90</strong></p>
-                <p>ou 10x de R$ 264,99 sem juros</p>
-                <a href="carrinho.html">Adicionar ao carrinho</a>
-            </article>
+            <p>
+              <input
+                type="radio"
+                id="preco-ate-2000"
+                name="preco"
+                value="ate-2000"
+              />
+              <label for="preco-ate-2000">Até R$ 2.000</label>
+            </p>
 
-            <article>
-                <img src="https://placehold.co/300x200?text=Notebook+Dell+Inspiron"
-                    alt="Notebook Dell Inspiron" width="300" height="200">
-                <p>Notebook</p>
-                <h3><a href="produtos.html">Notebook Dell Inspiron 15</a></h3>
-                <p>Avaliação: ★★★★★ (74 avaliações)</p>
-                <p><strong>R$ 3.499,90</strong></p>
-                <p>ou 10x de R$ 349,99 sem juros</p>
-                <a href="carrinho.html">Adicionar ao carrinho</a>
-            </article>
+            <p>
+              <input
+                type="radio"
+                id="preco-2000-3000"
+                name="preco"
+                value="2000-3000"
+              />
+              <label for="preco-2000-3000">R$ 2.000 a R$ 3.000</label>
+            </p>
 
-            <article>
-                <img src="https://placehold.co/300x200?text=Notebook+TechBook+Pro"
-                    alt="Notebook TechBook Pro" width="300" height="200">
-                <p>Notebook</p>
-                <h3><a href="produtos.html">Notebook TechBook Pro</a></h3>
-                <p>Avaliação: ★★★★★ (52 avaliações)</p>
-                <p><strong>R$ 4.299,90</strong></p>
-                <p>ou 10x de R$ 429,99 sem juros</p>
-                <a href="carrinho.html">Adicionar ao carrinho</a>
-            </article>
-        </section>
+            <p>
+              <input
+                type="radio"
+                id="preco-acima-3000"
+                name="preco"
+                value="acima-3000"
+              />
+              <label for="preco-acima-3000">Acima de R$ 3.000</label>
+            </p>
+          </fieldset>
 
-        <nav aria-label="Paginação dos resultados">
-            <p>Página 1 de 1</p>
-            <a href="busca.html?q=notebook&amp;pagina=1" aria-current="page">1</a>
-        </nav>
+          <fieldset>
+            <legend>Marca</legend>
+
+            <p>
+              <input
+                type="checkbox"
+                id="marca-technova"
+                name="marca"
+                value="technova"
+              />
+              <label for="marca-technova">TechNova</label>
+            </p>
+
+            <p>
+              <input
+                type="checkbox"
+                id="marca-lenovo"
+                name="marca"
+                value="lenovo"
+              />
+              <label for="marca-lenovo">Lenovo</label>
+            </p>
+
+            <p>
+              <input
+                type="checkbox"
+                id="marca-dell"
+                name="marca"
+                value="dell"
+              />
+              <label for="marca-dell">Dell</label>
+            </p>
+          </fieldset>
+
+          <label for="ordenacao">Ordenar por:</label>
+
+          <select id="ordenacao" name="ordenacao">
+            <option value="relevancia">Mais relevantes</option>
+            <option value="menor-preco">Menor preço</option>
+            <option value="maior-preco">Maior preço</option>
+            <option value="mais-vendidos">Mais vendidos</option>
+          </select>
+
+          <button type="submit">Aplicar filtros</button>
+        </form>
+      </section>
+
+      <section aria-labelledby="titulo-produtos">
+        <h2 id="titulo-produtos">Produtos encontrados</h2>
+
+        <div id="lista-resultados">
+          <p>Carregando produtos...</p>
+        </div>
+      </section>
+
+      <nav aria-label="Paginação dos resultados">
+        <p id="paginacao">Página 1 de 1</p>
+      </nav>
     </main>
 
     <footer>
-        <p><a href="homepage.html">Voltar à página inicial</a></p>
-        <p>&copy; 2026 TechNova Store. Todos os direitos reservados.</p>
+      <p><a href="homepage.html">Voltar à página inicial</a></p>
+      <p>&copy; 2026 TechNova Store. Todos os direitos reservados.</p>
     </footer>
-</body>
+
+    <script src="Script/store.js"></script>
+
+    <script>
+      const DB_KEY = "technovaStoreDb";
+
+      // Produtos iniciais iguais aos cadastrados no store.js
+      const produtosIniciais = [
+        {
+          id: "TN-SM-001",
+          name: "Smartphone TechPhone X",
+          category: "Smartphones",
+          priceCents: 249990,
+          image: "Images/computadores.png",
+          description:
+            "Smartphone com tela de alta qualidade e ótimo desempenho.",
+          stock: 10,
+        },
+        {
+          id: "TN-FN-002",
+          name: "Fone Bluetooth TechSound",
+          category: "Áudio",
+          priceCents: 29990,
+          image: "Images/headset_gamer.png",
+          description: "Fone Bluetooth com conexão sem fio e som de qualidade.",
+          stock: 20,
+        },
+        {
+          id: "TN-TC-003",
+          name: "Teclado Mecânico TechKeys",
+          category: "Periféricos",
+          priceCents: 44990,
+          image: "Images/teclado.png",
+          description: "Teclado mecânico ideal para digitação e jogos.",
+          stock: 15,
+        },
+      ];
+
+      // Recupera os produtos cadastrados no catálogo
+      function carregarProdutos() {
+        try {
+          let banco = JSON.parse(localStorage.getItem(DB_KEY));
+
+          if (!banco || !Array.isArray(banco.products)) {
+            banco = {
+              products: produtosIniciais,
+              users: [],
+              orders: [],
+            };
+
+            localStorage.setItem(DB_KEY, JSON.stringify(banco));
+          }
+
+          return banco.products;
+        } catch (erro) {
+          return produtosIniciais;
+        }
+      }
+
+      const produtos = carregarProdutos();
+
+      // Lê os parâmetros enviados pela URL
+      const parametros = new URLSearchParams(window.location.search);
+
+      const termo = parametros.get("q") || "";
+      const categoriasSelecionadas = parametros.getAll("categoria");
+      const marcasSelecionadas = parametros.getAll("marca");
+      const faixaPreco = parametros.get("preco") || "";
+      const ordenacao = parametros.get("ordenacao") || "relevancia";
+
+      // Preenche os campos com os valores da pesquisa
+      document.getElementById("termo-busca").value = termo;
+      document.getElementById("pesquisa-filtro").value = termo;
+      document.getElementById("ordenacao").value = ordenacao;
+
+      categoriasSelecionadas.forEach(function (categoria) {
+        const campo = document.querySelector(
+          'input[name="categoria"][value="' + categoria + '"]',
+        );
+
+        if (campo) {
+          campo.checked = true;
+        }
+      });
+
+      marcasSelecionadas.forEach(function (marca) {
+        const campo = document.querySelector(
+          'input[name="marca"][value="' + marca + '"]',
+        );
+
+        if (campo) {
+          campo.checked = true;
+        }
+      });
+
+      const campoPreco = document.querySelector(
+        'input[name="preco"][value="' + faixaPreco + '"]',
+      );
+
+      if (campoPreco) {
+        campoPreco.checked = true;
+      }
+
+      // Normaliza os textos para facilitar a pesquisa
+      function normalizar(texto) {
+        return String(texto)
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .toLowerCase()
+          .trim();
+      }
+
+      // Atualiza o texto da pesquisa
+      document.getElementById("texto-busca").textContent = termo
+        ? 'Resultados para "' + termo + '"'
+        : "Confira os produtos disponíveis.";
+
+      // Filtra os produtos
+      let resultados = produtos.filter(function (produto) {
+        const nome = normalizar(produto.name);
+        const categoria = normalizar(produto.category);
+        const pesquisa = normalizar(termo);
+
+        const termoEncontrado = pesquisa
+          .split(/\s+/)
+          .filter(Boolean)
+          .every(function (palavra) {
+            return nome.includes(palavra) || categoria.includes(palavra);
+          });
+
+        const categoriaEncontrada =
+          categoriasSelecionadas.length === 0 ||
+          categoriasSelecionadas.some(function (categoriaSelecionada) {
+            return produto.category === categoriaSelecionada;
+          });
+
+        const marcaProduto = normalizar(produto.brand || "technova");
+
+        const marcaEncontrada =
+          marcasSelecionadas.length === 0 ||
+          marcasSelecionadas.some(function (marca) {
+            return marcaProduto === normalizar(marca);
+          });
+
+        let precoEncontrado = true;
+
+        if (faixaPreco === "ate-2000") {
+          precoEncontrado = produto.priceCents <= 200000;
+        } else if (faixaPreco === "2000-3000") {
+          precoEncontrado =
+            produto.priceCents >= 200000 && produto.priceCents <= 300000;
+        } else if (faixaPreco === "acima-3000") {
+          precoEncontrado = produto.priceCents > 300000;
+        }
+
+        return (
+          termoEncontrado &&
+          categoriaEncontrada &&
+          marcaEncontrada &&
+          precoEncontrado
+        );
+      });
+
+      // Ordena os resultados
+      if (ordenacao === "menor-preco") {
+        resultados.sort(function (a, b) {
+          return a.priceCents - b.priceCents;
+        });
+      } else if (ordenacao === "maior-preco") {
+        resultados.sort(function (a, b) {
+          return b.priceCents - a.priceCents;
+        });
+      } else if (ordenacao === "mais-vendidos") {
+        resultados.sort(function (a, b) {
+          return (b.soldCount || 0) - (a.soldCount || 0);
+        });
+      }
+
+      // Atualiza a quantidade encontrada
+      document.getElementById("quantidade-resultados").textContent =
+        "Encontramos " +
+        resultados.length +
+        (resultados.length === 1 ? " produto." : " produtos.");
+
+      // Exibe os produtos
+      const lista = document.getElementById("lista-resultados");
+
+      lista.innerHTML = "";
+
+      if (resultados.length === 0) {
+        lista.innerHTML = `
+                <p>Nenhum produto encontrado.</p>
+                <p>Tente pesquisar por outro nome ou remover alguns filtros.</p>
+            `;
+      } else {
+        resultados.forEach(function (produto) {
+          const artigo = document.createElement("article");
+
+          const preco = (produto.priceCents / 100).toLocaleString("pt-BR", {
+            minimumFractionDigits: 2,
+            style: "currency",
+            currency: "BRL",
+          });
+
+          artigo.innerHTML = `
+                    <img
+                        src="${produto.image}"
+                        alt="${produto.name}"
+                        width="300"
+                        height="200"
+                    >
+
+                    <p>${produto.category}</p>
+
+                    <h3>
+                        <a href="detalhes.html?id=${encodeURIComponent(produto.id)}">
+                            ${produto.name}
+                        </a>
+                    </h3>
+
+                    <p><strong>${preco}</strong></p>
+
+                    <p>${produto.stock} unidade(s) disponível(is)</p>
+
+                    <a href="carrinho.html">Adicionar ao carrinho</a>
+                `;
+
+          lista.appendChild(artigo);
+        });
+      }
+    </script>
+  </body>
 </html>

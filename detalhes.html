@@ -1,0 +1,380 @@
+
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TechNova Store | Detalhes do Produto</title>
+
+    <link rel="stylesheet" href="/Styles/header.css" />
+    <link rel="stylesheet" href="/Styles/footer.css" />
+    <link rel="stylesheet" href="/Styles/detalhes.css" />
+</head>
+
+<body>
+    <div id="header"></div>
+
+    <main class="pagina-detalhes">
+        <div class="caminho">
+            <a href="/homepage.html">Início</a> /
+            <a href="/catalogo.html">Catálogo</a> /
+            <span id="nomeCaminho">Produto</span>
+        </div>
+
+        <!-- Informações principais do produto -->
+        <section class="produto-detalhes">
+            <div class="imagem-produto">
+                <img id="imagemProduto" src="" alt="Imagem do produto" />
+            </div>
+
+            <div class="informacoes-produto">
+                <span class="destaque">Destaque</span>
+
+                <h1 id="nomeProduto"></h1>
+
+                <p class="avaliacoes">
+                    <span>★★★★★</span>
+                    <span id="avaliacao"></span>
+                </p>
+
+                <h2 class="preco" id="precoProduto"></h2>
+
+                <p class="parcelamento">Ou em até 10x sem juros no cartão.</p>
+
+                <p class="frete">Frete grátis para todo o Brasil!</p>
+
+                <div class="quantidade">
+                    <label>Quantidade:</label>
+
+                    <div class="controle-quantidade">
+                        <button type="button" onclick="alterarQuantidade(-1)">-</button>
+
+                        <span id="quantidade">1</span>
+
+                        <button type="button" onclick="alterarQuantidade(1)">+</button>
+                    </div>
+                </div>
+
+                <button
+                    class="btn-carrinho"
+                    type="button"
+                    onclick="adicionarCarrinho()"
+                >
+                    Adicionar ao carrinho
+                </button>
+
+                <p id="mensagemCarrinho" aria-live="polite"></p>
+            </div>
+        </section>
+
+        <!-- Benefícios -->
+        <section class="beneficios">
+            <div>
+                <strong>◇ Compra segura</strong>
+                <p>Seus dados protegidos</p>
+            </div>
+
+            <div>
+                <strong>▣ Entrega rápida</strong>
+                <p>Para todo o Brasil</p>
+            </div>
+
+            <div>
+                <strong>✓ Garantia de fábrica</strong>
+                <p>12 meses de garantia</p>
+            </div>
+        </section>
+
+        <!-- Abas de informações -->
+        <section class="descricao">
+            <div class="abas">
+                <button class="aba ativa" onclick="mostrarAba('descricao', this)">
+                    Descrição
+                </button>
+
+                <button class="aba" onclick="mostrarAba('especificacoes', this)">
+                    Especificações
+                </button>
+
+                <button class="aba" onclick="mostrarAba('avaliacoes', this)">
+                    Avaliações
+                </button>
+            </div>
+
+            <div id="conteudoDescricao" class="conteudo-aba">
+                <h3>Descrição do produto</h3>
+                <p id="descricaoProduto"></p>
+            </div>
+
+            <div id="conteudoEspecificacoes" class="conteudo-aba escondido">
+                <h3>Especificações principais</h3>
+                <ul id="listaEspecificacoes"></ul>
+            </div>
+
+            <div id="conteudoAvaliacoes" class="conteudo-aba escondido">
+                <h3>Avaliações dos clientes</h3>
+                <p id="textoAvaliacoes"></p>
+            </div>
+        </section>
+
+        <!-- Produtos relacionados -->
+        <section class="relacionados">
+            <h2>Produtos Relacionados</h2>
+
+            <div class="lista-relacionados" id="produtosRelacionados"></div>
+        </section>
+    </main>
+
+    <div id="footer"></div>
+
+    <script src="/Components/components.js"></script>
+    <script src="/Script/store.js"></script>
+
+    <script>
+        const DB_KEY = "technovaStoreDb";
+        const CART_KEY = "carrinhoTechNova";
+
+        const parametros = new URLSearchParams(window.location.search);
+        const idProduto = parametros.get("id");
+
+        let produto = null;
+        let quantidade = 1;
+
+        // Formata o preço
+        function formatarPreco(valor) {
+            return (valor / 100).toLocaleString("pt-BR", {
+                style: "currency",
+                currency: "BRL",
+            });
+        }
+
+        // Carrega os produtos relacionados
+        function carregarRelacionados(produtos) {
+            const container = document.getElementById("produtosRelacionados");
+
+            container.innerHTML = "";
+
+            produtos.forEach(function (item) {
+                if (item.id === idProduto) {
+                    return;
+                }
+
+                const card = document.createElement("div");
+                card.className = "card-relacionado";
+                card.style.cursor = "pointer";
+
+                // Faz o card inteiro abrir os detalhes do produto
+                card.onclick = function () {
+                    window.location.href =
+                        "detalhes.html?id=" + encodeURIComponent(item.id);
+                };
+
+                const imagem = document.createElement("img");
+                imagem.src = item.image;
+                imagem.alt = item.name;
+
+                imagem.onerror = function () {
+                    console.error("Não foi possível carregar a imagem:", item.image);
+                };
+
+                const nome = document.createElement("h3");
+                nome.textContent = item.name;
+
+                const preco = document.createElement("p");
+                preco.textContent = formatarPreco(item.priceCents);
+
+                const botao = document.createElement("button");
+                botao.textContent = "Ver produto";
+                botao.type = "button";
+
+                botao.onclick = function (event) {
+                    event.stopPropagation();
+
+                    window.location.href =
+                        "detalhes.html?id=" + encodeURIComponent(item.id);
+                };
+
+                card.appendChild(imagem);
+                card.appendChild(nome);
+                card.appendChild(preco);
+                card.appendChild(botao);
+
+                container.appendChild(card);
+            });
+        }
+
+        // Carrega as informações do produto
+        function carregarProduto() {
+            let banco;
+
+            try {
+                banco = JSON.parse(localStorage.getItem(DB_KEY) || "null");
+            } catch (error) {
+                banco = null;
+            }
+
+            const produtos =
+                banco && Array.isArray(banco.products) ? banco.products : [];
+
+            produto = produtos.find(function (item) {
+                return item.id === idProduto;
+            });
+
+            if (!produto) {
+                document.querySelector(".pagina-detalhes").innerHTML =
+                    "<h2>Produto não encontrado!</h2>" +
+                    "<a href='/catalogo.html'>Voltar ao catálogo</a>";
+
+                return;
+            }
+
+            document.title = produto.name + " | TechNova Store";
+
+            document.getElementById("nomeProduto").textContent = produto.name;
+
+            document.getElementById("nomeCaminho").textContent = produto.name;
+
+            document.getElementById("precoProduto").textContent = formatarPreco(
+                produto.priceCents
+            );
+
+            // Carrega a imagem do produto
+            const imagemProduto = document.getElementById("imagemProduto");
+
+            imagemProduto.src = produto.image;
+            imagemProduto.alt = produto.name;
+
+            imagemProduto.onerror = function () {
+                console.error("Não foi possível carregar a imagem:", produto.image);
+            };
+
+            document.getElementById("descricaoProduto").textContent =
+                produto.description;
+
+            document.getElementById("avaliacao").textContent =
+                "Avaliações não cadastradas";
+
+            document.getElementById("textoAvaliacoes").textContent =
+                "Ainda não existem avaliações cadastradas para este produto.";
+
+            const lista = document.getElementById("listaEspecificacoes");
+
+            lista.innerHTML = "";
+
+            const especificacoes = [
+                "Código do produto: " + produto.id,
+                "Categoria: " + produto.category,
+                "Estoque disponível: " + produto.stock + " unidade(s)",
+            ];
+
+            especificacoes.forEach(function (item) {
+                const li = document.createElement("li");
+
+                li.textContent = item;
+
+                lista.appendChild(li);
+            });
+
+            carregarRelacionados(produtos);
+        }
+
+        // Altera a quantidade
+        function alterarQuantidade(valor) {
+            quantidade += valor;
+
+            if (quantidade < 1) {
+                quantidade = 1;
+            }
+
+            if (produto && quantidade > produto.stock) {
+                quantidade = produto.stock;
+            }
+
+            document.getElementById("quantidade").textContent = quantidade;
+        }
+
+        // Adiciona o produto ao carrinho
+        function adicionarCarrinho() {
+            if (!produto) {
+                return;
+            }
+
+            let carrinho;
+
+            try {
+                carrinho = JSON.parse(localStorage.getItem(CART_KEY) || "[]");
+
+                if (!Array.isArray(carrinho)) {
+                    carrinho = [];
+                }
+            } catch (error) {
+                carrinho = [];
+            }
+
+            let itemExistente = carrinho.find(function (item) {
+                return item.id === produto.id;
+            });
+
+            const quantidadeAtual = itemExistente
+                ? Number(itemExistente.quantity) || 0
+                : 0;
+
+            if (quantidadeAtual + quantidade > produto.stock) {
+                document.getElementById("mensagemCarrinho").textContent =
+                    "Estoque insuficiente. Disponível: " +
+                    produto.stock +
+                    " unidade(s).";
+
+                return;
+            }
+
+            if (itemExistente) {
+                itemExistente.quantity += quantidade;
+            } else {
+                carrinho.push({
+                    id: produto.id,
+                    quantity: quantidade,
+                });
+            }
+
+            localStorage.setItem(CART_KEY, JSON.stringify(carrinho));
+
+            // Atualiza o contador do carrinho no cabeçalho
+            const badge = document.getElementById("cart-count");
+
+            if (badge) {
+                const total = carrinho.reduce(function (soma, item) {
+                    return soma + item.quantity;
+                }, 0);
+
+                badge.textContent = String(total);
+            }
+
+            document.getElementById("mensagemCarrinho").textContent =
+                "Produto adicionado ao carrinho com sucesso!";
+        }
+
+        // Alterna entre as abas
+        function mostrarAba(aba, botao) {
+            document.querySelectorAll(".conteudo-aba").forEach(function (item) {
+                item.classList.add("escondido");
+            });
+
+            document.querySelectorAll(".aba").forEach(function (item) {
+                item.classList.remove("ativa");
+            });
+
+            document
+                .getElementById(
+                    "conteudo" + aba.charAt(0).toUpperCase() + aba.slice(1)
+                )
+                .classList.remove("escondido");
+
+            botao.classList.add("ativa");
+        }
+
+        // Inicia a página
+        document.addEventListener("DOMContentLoaded", carregarProduto);
+    </script>
+</body>
+</html>

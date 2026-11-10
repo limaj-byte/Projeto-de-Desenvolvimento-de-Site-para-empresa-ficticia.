@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Produtos | TechNova Store</title>
+
+    <link rel="stylesheet" href="Styles/header.css" />
+    <link rel="stylesheet" href="Styles/footer.css" />
+  </head>
+
+  <body>
+    <div id="header"></div>
+
+    <main>
+      <h1>Catalogo de Produtos</h1>
+
+      <section aria-labelledby="filtros-produtos">
+        <h2 id="filtros-produtos">Pesquisar e filtrar</h2>
+
+        <form action="busca.html" method="get" role="search">
+          <label for="pesquisa">Nome do produto</label>
+
+          <input
+            type="search"
+            id="pesquisa"
+            name="q"
+            placeholder="Digite o nome do produto..."
+          />
+
+          <button type="submit">Pesquisar</button>
+        </form>
+
+        <label for="filtro-categoria">Categoria</label>
+
+        <select id="filtro-categoria">
+          <option value="">Todas as categorias</option>
+          <option value="Computadores">Computadores</option>
+          <option value="Smartphones">Smartphones</option>
+          <option value="Áudio">Áudio</option>
+          <option value="Periféricos">Periféricos</option>
+          <option value="Monitores">Monitores</option>
+          <option value="Acessórios">Acessórios</option>
+          <option value="Armazenamento">Armazenamento</option>
+        </select>
+
+        <label for="ordenacao">Ordenar por</label>
+
+        <select id="ordenacao">
+          <option value="">Relevância</option>
+          <option value="menor">Menor preço</option>
+          <option value="maior">Maior preço</option>
+          <option value="nome">Nome</option>
+        </select>
+      </section>
+
+      <p id="mensagem-produto" data-store-message aria-live="polite"></p>
+
+      <section id="lista-produtos" aria-label="Produtos disponíveis">
+        <p>Carregando produtos…</p>
+      </section>
+
+      <p>
+        <a href="carrinho.html">Ir para o carrinho</a>
+      </p>
+    </main>
+
+    <div id="footer"></div>
+
+    <script src="Components/components.js"></script>
+    <script src="Script/store.js" defer></script>
+  </body>
+</html>

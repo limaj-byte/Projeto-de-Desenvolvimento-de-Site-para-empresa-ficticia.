@@ -1,183 +1,288 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>TechNovaStore | Página Inicial</title>
-    <link rel="stylesheet" href="/Styles/homepage.css">
-    <link rel="stylesheet" href="/Styles/header.css">
-    <link rel="stylesheet" href="/Styles/footer.css">
-</head>
 
-<body>
+    <link rel="stylesheet" href="/Styles/homepage.css" />
+    <link rel="stylesheet" href="/Styles/header.css" />
+    <link rel="stylesheet" href="/Styles/footer.css" />
+  </head>
 
+  <body>
     <div id="header"></div>
 
     <!-- Carrossel promocional -->
     <div class="banner">
+      <div class="slide active">
+        <h2>Ofertas imperdíveis!</h2>
+        <p>Encontre tecnologia com preços especiais.</p>
+        <button onclick="window.location.href = 'catalogo.html'">
+          Ver ofertas
+        </button>
+      </div>
 
-        <div class="slide active">
-            <h2>Ofertas imperdíveis!</h2>
-            <p>Encontre tecnologia com preços especiais.</p>
-            <button onclick="window.location.href='produtos.html'">Ver ofertas</button>
-        </div>
+      <div class="slide">
+        <h2>Novidades na TechStore</h2>
+        <p>Confira os últimos lançamentos.</p>
+        <button onclick="window.location.href = 'catalogo.html'">
+          Conhecer produtos
+        </button>
+      </div>
 
-        <div class="slide">
-            <h2>Novidades na TechStore</h2>
-            <p>Confira os últimos lançamentos.</p>
-            <button onclick="window.location.href='produtos.html'">Conhecer produtos</button>
-        </div>
+      <div class="slide">
+        <h2>Monte seu setup</h2>
+        <p>Os melhores acessórios para você.</p>
+        <button onclick="window.location.href = 'catalogo.html'">
+          Comprar agora
+        </button>
+      </div>
 
-        <div class="slide">
-            <h2>Monte seu setup</h2>
-            <p>Os melhores acessórios para você.</p>
-            <button onclick="window.location.href='produtos.html'">Comprar agora</button>
-        </div>
-
-        <div class="controles">
-            <button onclick="mudarSlide(-1)">❮</button>
-            <button onclick="mudarSlide(1)">❯</button>
-        </div>
+      <div class="controles">
+        <button onclick="mudarSlide(-1)">❮</button>
+        <button onclick="mudarSlide(1)">❯</button>
+      </div>
     </div>
 
     <!-- Categorias em destaque -->
     <section id="categorias">
-        <h2>Categorias em Destaque</h2>
+      <h2>Categorias em Destaque</h2>
 
-        <div class="categorias">
-            <div class="categoria">
-                <span></span>
-                Computadores
-            </div>
-
-            <div class="categoria">
-                <span></span>
-                Periféricos
-            </div>
-
-            <div class="categoria">
-                <span></span>
-                Monitores
-            </div>
-
-            <div class="categoria">
-                <span></span>
-                Acessórios
-            </div>
+      <div class="categorias">
+        <div class="categoria">
+          <span></span>
+          Computadores
         </div>
+
+        <div class="categoria">
+          <span></span>
+          Periféricos
+        </div>
+
+        <div class="categoria">
+          <span></span>
+          Monitores
+        </div>
+
+        <div class="categoria">
+          <span></span>
+          Acessórios
+        </div>
+      </div>
     </section>
 
     <!-- Mais vendidos -->
     <section id="mais-vendidos">
-        <h2>Mais Vendidos</h2>
+      <h2>Mais Vendidos</h2>
 
-        <div class="produtos">
+      <div class="produtos">
+        <div
+          class="produto"
+          onclick="window.location.href = 'detalhes.html?id=notebook'"
+          style="cursor: pointer"
+        >
+          <img src="/Images/notebook.png" alt="Notebook" />
 
-            <div class="produto">
-                <img src="https://placehold.co/300x200?text=Notebook"
-                     alt="Notebook">
-                <h3>Notebook Intel Core i5</h3>
-                <div class="estrelas">★★★★★ (128)</div>
-                <p class="preco">R$ 2.899,90</p>
-                <button onclick="window.location.href='/produtos.html'">
-                    Ver no catálogo
-                </button>
-            </div>
+          <h3>Notebook Intel Core i5</h3>
 
-            <div class="produto">
-                <img src="https://placehold.co/300x200?text=Headset"
-                     alt="Headset">
-                <h3>Headset Gamer</h3>
-                <div class="estrelas">★★★★★ (96)</div>
-                <p class="preco">R$ 249,90</p>
-                <button onclick="window.location.href='/produtos.html'">
-                    Ver no catálogo
-                </button>
-            </div>
+          <div class="estrelas">★★★★★ (128)</div>
 
-            <div class="produto">
-                <img src="https://placehold.co/300x200?text=Teclado"
-                     alt="Teclado">
-                <h3>Teclado Mecânico RGB</h3>
-                <div class="estrelas">★★★★☆ (74)</div>
-                <p class="preco">R$ 189,90</p>
-                <button onclick="window.location.href='/produtos.html'">
-                    Ver no catálogo
-                </button>
-            </div>
+          <p class="preco">R$ 2.899,90</p>
 
-            <div class="produto">
-                <img src="https://placehold.co/300x200?text=Mouse"
-                     alt="Mouse">
-                <h3>Mouse Gamer</h3>
-                <div class="estrelas">★★★★★ (110)</div>
-                <p class="preco">R$ 129,90</p>
-                <button onclick="window.location.href='/produtos.html'">
-                    Ver no catálogo
-                </button>
-            </div>
-
+          <button
+            type="button"
+            onclick="
+              event.stopPropagation();
+              window.location.href = 'detalhes.html?id=notebook';
+            "
+          >
+            Ver no catálogo
+          </button>
         </div>
+
+        <div
+          class="produto"
+          onclick="window.location.href = 'detalhes.html?id=headset'"
+          style="cursor: pointer"
+        >
+          <img src="/Images/headset_gamer.png" alt="Headset" />
+
+          <h3>Headset Gamer</h3>
+
+          <div class="estrelas">★★★★★ (96)</div>
+
+          <p class="preco">R$ 249,90</p>
+
+          <button
+            type="button"
+            onclick="
+              event.stopPropagation();
+              window.location.href = 'detalhes.html?id=headset';
+            "
+          >
+            Ver no catálogo
+          </button>
+        </div>
+
+        <div
+          class="produto"
+          onclick="window.location.href = 'detalhes.html?id=teclado'"
+          style="cursor: pointer"
+        >
+          <img src="/Images/teclado.png" alt="Teclado" />
+
+          <h3>Teclado Mecânico RGB</h3>
+
+          <div class="estrelas">★★★★☆ (74)</div>
+
+          <p class="preco">R$ 189,90</p>
+
+          <button
+            type="button"
+            onclick="
+              event.stopPropagation();
+              window.location.href = 'detalhes.html?id=teclado';
+            "
+          >
+            Ver no catálogo
+          </button>
+        </div>
+
+        <div
+          class="produto"
+          onclick="window.location.href = 'detalhes.html?id=mouse'"
+          style="cursor: pointer"
+        >
+          <img src="/Images/mouse.png" alt="Mouse" />
+
+          <h3>Mouse Gamer</h3>
+
+          <div class="estrelas">★★★★★ (110)</div>
+
+          <p class="preco">R$ 129,90</p>
+
+          <button
+            type="button"
+            onclick="
+              event.stopPropagation();
+              window.location.href = 'detalhes.html?id=mouse';
+            "
+          >
+            Ver no catálogo
+          </button>
+        </div>
+      </div>
     </section>
 
     <!-- Lançamentos -->
     <section id="lancamentos">
-        <h2>Lançamentos</h2>
+      <h2>Lançamentos</h2>
 
-        <div class="produtos">
+      <div class="produtos">
+        <div
+          class="produto"
+          onclick="window.location.href = 'detalhes.html?id=monitor'"
+          style="cursor: pointer"
+        >
+          <img src="/Images/monitores.png" alt="Monitor" />
 
-            <div class="produto">
-                <img src="https://placehold.co/300x200?text=Monitor"
-                     alt="Monitor">
-                <h3>Monitor Full HD 144Hz</h3>
-                <div class="estrelas">★★★★★ (12)</div>
-                <p class="preco">R$ 999,90</p>
-                <button onclick="window.location.href='/produtos.html'">
-                    Ver no catálogo
-                </button>
-            </div>
+          <h3>Monitor Full HD 144Hz</h3>
 
-            <div class="produto">
-                <img src="https://placehold.co/300x200?text=Webcam"
-                     alt="Webcam">
-                <h3>Webcam Full HD</h3>
-                <div class="estrelas">★★★★☆ (8)</div>
-                <p class="preco">R$ 219,90</p>
-                <button onclick="window.location.href='/produtos.html'">
-                    Ver no catálogo
-                </button>
-            </div>
+          <div class="estrelas">★★★★★ (12)</div>
 
-            <div class="produto">
-                <img src="https://placehold.co/300x200?text=SSD"
-                     alt="SSD">
-                <h3>SSD NVMe 1TB</h3>
-                <div class="estrelas">★★★★★ (15)</div>
-                <p class="preco">R$ 499,90</p>
-                <button onclick="window.location.href='/produtos.html'">
-                    Ver no catálogo
-                </button>
-            </div>
+          <p class="preco">R$ 999,90</p>
 
-            <div class="produto">
-                <img src="https://placehold.co/300x200?text=Microfone"
-                     alt="Microfone">
-                <h3>Microfone USB</h3>
-                <div class="estrelas">★★★★☆ (9)</div>
-                <p class="preco">R$ 299,90</p>
-                <button onclick="window.location.href='/produtos.html'">
-                    Ver no catálogo
-                </button>
-            </div>
-
+          <button
+            type="button"
+            onclick="
+              event.stopPropagation();
+              window.location.href = 'detalhes.html?id=monitor';
+            "
+          >
+            Ver no catálogo
+          </button>
         </div>
 
-        <div id="footer"></div>
-    
+        <div
+          class="produto"
+          onclick="window.location.href = 'detalhes.html?id=webcam'"
+          style="cursor: pointer"
+        >
+          <img src="/Images/web_cam.png" alt="Webcam" />
+
+          <h3>Webcam Full HD</h3>
+
+          <div class="estrelas">★★★★☆ (8)</div>
+
+          <p class="preco">R$ 219,90</p>
+
+          <button
+            type="button"
+            onclick="
+              event.stopPropagation();
+              window.location.href = 'detalhes.html?id=webcam';
+            "
+          >
+            Ver no catálogo
+          </button>
+        </div>
+
+        <div
+          class="produto"
+          onclick="window.location.href = 'detalhes.html?id=ssd'"
+          style="cursor: pointer"
+        >
+          <img src="/Images/ssd.png" alt="SSD" />
+
+          <h3>SSD NVMe 1TB</h3>
+
+          <div class="estrelas">★★★★★ (15)</div>
+
+          <p class="preco">R$ 499,90</p>
+
+          <button
+            type="button"
+            onclick="
+              event.stopPropagation();
+              window.location.href = 'detalhes.html?id=ssd';
+            "
+          >
+            Ver no catálogo
+          </button>
+        </div>
+
+        <div
+          class="produto"
+          onclick="window.location.href = 'detalhes.html?id=microfone'"
+          style="cursor: pointer"
+        >
+          <img src="/Images/microfone.png" alt="Microfone" />
+
+          <h3>Microfone USB</h3>
+
+          <div class="estrelas">★★★★☆ (9)</div>
+
+          <p class="preco">R$ 299,90</p>
+
+          <button
+            type="button"
+            onclick="
+              event.stopPropagation();
+              window.location.href = 'detalhes.html?id=microfone';
+            "
+          >
+            Ver no catálogo
+          </button>
+        </div>
+      </div>
     </section>
+
+    <!-- Rodapé -->
+    <div id="footer"></div>
 
     <script src="/Script/script.js"></script>
     <script src="/Components/components.js"></script>
-</body>
+  </body>
 </html>
