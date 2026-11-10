@@ -94,8 +94,12 @@
 }
 
 .search button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 44px;
     height: 100%;
+    padding: 0;
     background: var(--blue);
     color: var(--white);
     font-size: 16px;
@@ -197,4 +201,23 @@
     .tn-nav {
         padding: 4px 12px 10px;
     }
+}
+
+.header-actions img {
+    display: block;
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+}
+
+.header-actions .cart img {
+    filter: brightness(0) invert(1);
+}
+
+.search button img {
+    display: block;
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
 }
