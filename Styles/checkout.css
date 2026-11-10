@@ -143,7 +143,7 @@ body.confirmation-page {
   min-width: 0;
   height: 36px;
   padding: 7px 10px;
-  border: 1px solid #d9e0eb;
+  border: 1px solid gray;
   border-radius: 5px;
   background: var(--white);
   color: var(--text);
