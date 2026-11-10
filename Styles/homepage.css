@@ -62,11 +62,7 @@ button {
     border-radius: var(--radius);
     overflow: hidden;
     color: var(--white);
-
-    /* imagem de fundo */
-    background: url("../Images/banner-home.png") no-repeat right center;
-    background-size: cover;
-    background-color: #07122e; /* cor de reserva enquanto a imagem carrega */
+    background-color: #07122e;
 }
 
 .slide {
@@ -82,6 +78,35 @@ button {
 
 .slide.active {
     display: flex;
+}
+
+/* Imagem de fundo de cada slide */
+.slide {
+    background-color: #07122e;
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: cover;
+}
+
+/* Slide 1: Ofertas imperdíveis */
+.slide:nth-child(1) {
+    background-image:
+        linear-gradient(90deg, rgba(5, 12, 35, 0.55) 0%, rgba(5, 12, 35, 0) 55%),
+        url("/Images/descontos.png");
+}
+
+/* Slide 2: Novidades na TechStore */
+.slide:nth-child(2) {
+    background-image:
+        linear-gradient(90deg, rgba(5, 12, 35, 0.55) 0%, rgba(5, 12, 35, 0) 55%),
+        url("/Images/monte.png");
+}
+
+/* Slide 3: Monte seu setup (usa a imagem que você já tem) */
+.slide:nth-child(3) {
+    background-image:
+        linear-gradient(90deg, rgba(5, 12, 35, 0.55) 0%, rgba(5, 12, 35, 0) 55%),
+        url("/Images/Monte\ seu\ setup.png");
 }
 
 @keyframes fadeSlide {
