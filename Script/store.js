@@ -345,7 +345,7 @@
           const allowed = [
             "checkoutpagamento.html",
             "profile.html",
-            "produtos.html",
+            "catalogo.html",
             "homepage.html",
           ];
 
@@ -429,14 +429,28 @@
       .trim()
       .toLocaleLowerCase("pt-BR");
 
-    const category = document.getElementById("filtro-categoria")?.value || "";
+    const categories = Array.from(
+      document.querySelectorAll('input[name="categoria"]:checked'),
+      (input) => input.value,
+    );
+    const priceRange =
+      document.querySelector('input[name="preco"]:checked')?.value || "";
 
     const sort = document.getElementById("ordenacao")?.value || "";
 
     let visible = products.filter(
       (product) =>
         product.name.toLocaleLowerCase("pt-BR").includes(query) &&
-        (!category || product.category === category),
+        (!categories.length || categories.includes(product.category)) &&
+        (!priceRange ||
+          (priceRange === "ate-500" && product.priceCents <= 50000) ||
+          (priceRange === "500-1500" &&
+            product.priceCents > 50000 &&
+            product.priceCents <= 150000) ||
+          (priceRange === "1500-3000" &&
+            product.priceCents > 150000 &&
+            product.priceCents <= 300000) ||
+          (priceRange === "acima-3000" && product.priceCents > 300000)),
     );
 
     if (sort === "menor") {
@@ -504,6 +518,14 @@
           )
           .join("")
       : "<p>Nenhum produto encontrado.</p>";
+
+    const count = document.getElementById("contagem-produtos");
+
+    if (count) {
+      count.textContent = `${visible.length} ${
+        visible.length === 1 ? "produto encontrado" : "produtos encontrados"
+      }`;
+    }
   }
 
   // Inicializa o catálogo
@@ -526,7 +548,7 @@
 
     renderProducts();
 
-    ["pesquisa", "filtro-categoria", "ordenacao"].forEach((id) => {
+    ["pesquisa", "ordenacao"].forEach((id) => {
       const input = document.getElementById(id);
 
       if (input) {
@@ -536,6 +558,19 @@
         );
       }
     });
+
+    const filters = document.getElementById("filtros-catalogo");
+
+    if (filters) {
+      filters.addEventListener("submit", (event) => {
+        event.preventDefault();
+        renderProducts();
+      });
+
+      filters.addEventListener("reset", () => {
+        requestAnimationFrame(renderProducts);
+      });
+    }
 
     list.addEventListener("click", (event) => {
       const add = event.target.closest("[data-add-product]");

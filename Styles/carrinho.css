@@ -254,7 +254,7 @@ main > p:has(> #finalizar-compra[hidden]) {
     background: var(--green-dark);
 }
 
-main > p:has(> a[href="produtos.html"]) {
+main > p:has(> a[href="catalogo.html"]) {
     position: absolute;
     top: 250px;
     right: 0;
@@ -263,14 +263,14 @@ main > p:has(> a[href="produtos.html"]) {
     padding: 0 20px;
 }
 
-main > p:has(> a[href="produtos.html"]) a {
+main > p:has(> a[href="catalogo.html"]) a {
     color: var(--blue);
     font-size: 14px;
     font-weight: 600;
     text-decoration: none;
 }
 
-main > p:has(> a[href="produtos.html"]) a:hover {
+main > p:has(> a[href="catalogo.html"]) a:hover {
     text-decoration: underline;
 }
 
@@ -296,7 +296,7 @@ main > p:has(> a[href="produtos.html"]) a:hover {
         padding: 0;
     }
 
-    main > p:has(> a[href="produtos.html"]) {
+    main > p:has(> a[href="catalogo.html"]) {
         position: static;
         width: auto;
         margin: 12px 0 0;

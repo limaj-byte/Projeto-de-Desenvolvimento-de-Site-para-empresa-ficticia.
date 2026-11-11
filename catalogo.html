@@ -3,66 +3,111 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Produtos | TechNova Store</title>
+    <meta
+      name="description"
+      content="Pesquise e encontre computadores, periféricos e acessórios na TechNova Store."
+    />
+    <title>Catálogo de produtos | TechNova Store</title>
 
     <link rel="stylesheet" href="Styles/header.css" />
     <link rel="stylesheet" href="Styles/footer.css" />
+    <link rel="stylesheet" href="Styles/catalogo.css" />
   </head>
 
   <body>
     <div id="header"></div>
 
-    <main>
-      <h1>Catalogo de Produtos</h1>
+    <main class="catalogo">
+      <section class="catalogo-banner" aria-labelledby="titulo-catalogo">
+        <div class="catalogo-banner-content">
+          <p class="catalogo-eyebrow">Encontre o que você precisa</p>
+          <h1 id="titulo-catalogo">Pesquisa de Produtos</h1>
+          <p>
+            Pesquise, filtre e encontre os melhores produtos de tecnologia para
+            o seu dia a dia.
+          </p>
 
-      <section aria-labelledby="filtros-produtos">
-        <h2 id="filtros-produtos">Pesquisar e filtrar</h2>
-
-        <form action="busca.html" method="get" role="search">
-          <label for="pesquisa">Nome do produto</label>
-
-          <input
-            type="search"
-            id="pesquisa"
-            name="q"
-            placeholder="Digite o nome do produto..."
-          />
-
-          <button type="submit">Pesquisar</button>
-        </form>
-
-        <label for="filtro-categoria">Categoria</label>
-
-        <select id="filtro-categoria">
-          <option value="">Todas as categorias</option>
-          <option value="Computadores">Computadores</option>
-          <option value="Smartphones">Smartphones</option>
-          <option value="Áudio">Áudio</option>
-          <option value="Periféricos">Periféricos</option>
-          <option value="Monitores">Monitores</option>
-          <option value="Acessórios">Acessórios</option>
-          <option value="Armazenamento">Armazenamento</option>
-        </select>
-
-        <label for="ordenacao">Ordenar por</label>
-
-        <select id="ordenacao">
-          <option value="">Relevância</option>
-          <option value="menor">Menor preço</option>
-          <option value="maior">Maior preço</option>
-          <option value="nome">Nome</option>
-        </select>
+          <form
+            class="catalogo-busca"
+            action="catalogo.html"
+            method="get"
+            role="search"
+          >
+            <label class="visually-hidden" for="pesquisa">
+              Pesquisar produtos
+            </label>
+            <input
+              type="search"
+              id="pesquisa"
+              name="q"
+              placeholder="O que você está procurando?"
+            />
+            <button type="submit">Pesquisar</button>
+          </form>
+        </div>
       </section>
 
-      <p id="mensagem-produto" data-store-message aria-live="polite"></p>
+      <div class="catalogo-layout">
+        <aside class="catalogo-filtros" aria-labelledby="titulo-filtros">
+          <h2 id="titulo-filtros">Filtros</h2>
 
-      <section id="lista-produtos" aria-label="Produtos disponíveis">
-        <p>Carregando produtos…</p>
-      </section>
+          <form id="filtros-catalogo">
+            <fieldset>
+              <legend>Categoria</legend>
+              <label><input type="checkbox" name="categoria" value="Computadores" /> Computadores</label>
+              <label><input type="checkbox" name="categoria" value="Smartphones" /> Smartphones</label>
+              <label><input type="checkbox" name="categoria" value="Áudio" /> Áudio</label>
+              <label><input type="checkbox" name="categoria" value="Periféricos" /> Periféricos</label>
+              <label><input type="checkbox" name="categoria" value="Monitores" /> Monitores</label>
+              <label><input type="checkbox" name="categoria" value="Acessórios" /> Acessórios</label>
+              <label><input type="checkbox" name="categoria" value="Armazenamento" /> Armazenamento</label>
+            </fieldset>
 
-      <p>
-        <a href="carrinho.html">Ir para o carrinho</a>
-      </p>
+            <fieldset>
+              <legend>Faixa de preço</legend>
+              <label><input type="radio" name="preco" value="" checked /> Todos os preços</label>
+              <label><input type="radio" name="preco" value="ate-500" /> Até R$ 500</label>
+              <label><input type="radio" name="preco" value="500-1500" /> R$ 500 a R$ 1.500</label>
+              <label><input type="radio" name="preco" value="1500-3000" /> R$ 1.500 a R$ 3.000</label>
+              <label><input type="radio" name="preco" value="acima-3000" /> Acima de R$ 3.000</label>
+            </fieldset>
+
+            <div class="catalogo-filtro-acoes">
+              <button type="submit" class="catalogo-aplicar">Aplicar filtros</button>
+              <button type="reset" class="catalogo-limpar">Limpar filtros</button>
+            </div>
+          </form>
+        </aside>
+
+        <section class="catalogo-resultados" aria-labelledby="titulo-resultados">
+          <div class="catalogo-resultados-cabecalho">
+            <div>
+              <h2 id="titulo-resultados">Produtos disponíveis</h2>
+              <p id="contagem-produtos" aria-live="polite">Carregando produtos…</p>
+            </div>
+
+            <label class="catalogo-ordenacao" for="ordenacao">
+              Ordenar por
+              <select id="ordenacao">
+                <option value="">Relevância</option>
+                <option value="menor">Menor preço</option>
+                <option value="maior">Maior preço</option>
+                <option value="nome">Nome</option>
+              </select>
+            </label>
+          </div>
+
+          <p id="mensagem-produto" data-store-message aria-live="polite"></p>
+
+          <div id="lista-produtos" class="catalogo-grade">
+            <p>Carregando produtos…</p>
+          </div>
+
+          <p class="catalogo-carrinho">
+            <a href="carrinho.html">Ir para o carrinho</a>
+          </p>
+        </section>
+      </div>
     </main>
 
     <div id="footer"></div>
